@@ -1,8 +1,10 @@
 @using Northwind.Models
 @model IEnumerable<Category>
-<ul>
+
+<div class="list-group">
     @foreach (Category c in Model)
     {
-        <li>@c.CategoryName - @c.Description</li>
+        <a href="#" class="list-group-item list-group-item-action">@c.CategoryName - @c.Description</a>
     }
-</ul>
+
+</div>
