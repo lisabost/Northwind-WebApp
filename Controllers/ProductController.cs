@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Northwind.Models;
 using System.Linq;
@@ -19,11 +21,7 @@ namespace Northwind.Controllers
             product = _northwindContext.Products.Where(p => p.CategoryId == id).Where(p => p.Discontinued == false)
         });
 
-        public IActionResult DiscountDetail(int id) => View(new DiscountViewModel
-        {
-            discount = _northwindContext.Discounts.FirstOrDefault(d => d.DiscountID == id),
-            product = _northwindContext.Products.Where(p => p.CategoryId == id).Where(p => p.Discontinued == false)
-        });
+        public IActionResult DiscountDetail() => View(_northwindContext.Discounts.Where(d => DateTime.Compare(d.EndTime, DateTime.Now) > 0 && DateTime.Compare(d.StartTime, DateTime.Now) <= 0));
 
     }
 
