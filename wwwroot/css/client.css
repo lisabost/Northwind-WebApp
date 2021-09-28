@@ -63,6 +63,13 @@ a.navbar-brand {
     margin-bottom: 60px;
     font-family: 'Oswald', sans-serif;
   }
+
+  .toast {
+    position: absolute;
+    top: 65px;
+    right: 10px;
+}
+
   .footer {
     position: absolute;
     bottom: 0;
