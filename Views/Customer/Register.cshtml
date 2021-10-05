@@ -3,34 +3,49 @@
 <h4>Customer Registration</h4>
 <form method="post">
     <div asp-validation-summary="All"></div>
-    <label asp-for="@Model.CompanyName">Company Name: </label>
-    <input asp-for="@Model.CompanyName" placeholder="XYZ Corporation" />
-
-    <label asp-for="@Model.Address">Address: </label>
-    <input asp-for="@Model.Address" placeholder="12345 N Main St" />
+    <div class="form-group">
+        <label asp-for="@Model.CompanyName">Company Name: </label>
+        <input class="form-control" asp-for="@Model.CompanyName" placeholder="XYZ Corporation" />
+    </div>
     
+    <div class="form-group">
+    <label asp-for="@Model.Address">Address: </label>
+    <input class="form-control" asp-for="@Model.Address" placeholder="12345 N Main St" />
+    </div>
+    
+    <div class="form-group">
     <label asp-for="@Model.City">City: </label>
-    <input asp-for="@Model.City" placeholder="HomeTown" />
+    <input class="form-control" asp-for="@Model.City" placeholder="HomeTown" />
+    </div>
 
+    <div class="form-group">  
     <label asp-for="@Model.Region">State/Region: </label>
-    <input asp-for="@Model.Region" placeholder="WI" />
+    <input class="form-control" asp-for="@Model.Region" placeholder="WI" />
+    </div>
 
+    <div class="form-group">
     <label asp-for="@Model.PostalCode">Postal Code: </label>
-    <input asp-for="@Model.PostalCode" placeholder="53072" />
+    <input class="form-control" asp-for="@Model.PostalCode" placeholder="53072" />
+    </div>
 
+    <div class="form-group">
     <label asp-for="@Model.Country">Country: </label>
-    <input asp-for="@Model.Country" placeholder="USA" />
+    <input class="form-control" asp-for="@Model.Country" placeholder="USA" />
+    </div>
 
+    <div class="form-group">
     <label asp-for="@Model.Phone">Phone Number: </label>
-    <input asp-for="@Model.Phone" placeholder="555-555-5555" />
+    <input class="form-control" asp-for="@Model.Phone" placeholder="555-555-5555" />
+    </div>
 
+    <div class="form-group">
     <label asp-for="@Model.Fax">Fax: </label>
-    <input asp-for="@Model.Fax" placeholder="555-555-5555" />
+    <input class="form-control" asp-for="@Model.Fax" placeholder="555-555-5555" />
+    </div>
 
-    <br\>
-    <button type="submit">Register</button>
+    <button type="submit" class="btn btn-primary">Register</button>
 </form>
 
 <hr />
-<a asp-controller="Home" asp-action="Index">Home</a>
+<a type="button" class="btn btn-secondary" asp-controller="Home" asp-action="Index">Home</a>
 
