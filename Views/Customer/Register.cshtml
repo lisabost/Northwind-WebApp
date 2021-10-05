@@ -1,9 +1,9 @@
 @model Northwind.Models.Customer
 
-<div class="bg-primary m-1 p-1 text-white"><h4>Customer Registration</h4></div>
+<h4>Customer Registration</h4>
 <form method="post">
     <div asp-validation-summary="All"></div>
-    <label asp-for="@Model.CompanyName">Enter Url</label>
+    <label asp-for="@Model.CompanyName">Enter Company Name</label>
     <input asp-for="@Model.CompanyName" placeholder="Company Name" />
     <button type="submit">Create</button>
 </form>
