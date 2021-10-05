@@ -3,8 +3,30 @@
 <h4>Customer Registration</h4>
 <form method="post">
     <div asp-validation-summary="All"></div>
-    <label asp-for="@Model.CompanyName">Enter Company Name: </label>
-    <input asp-for="@Model.CompanyName" placeholder="Company Name" />
+    <label asp-for="@Model.CompanyName">Company Name: </label>
+    <input asp-for="@Model.CompanyName" placeholder="XYZ Corporation" />
+
+    <label asp-for="@Model.Address">Address: </label>
+    <input asp-for="@Model.Address" placeholder="12345 N Main St" />
+    
+    <label asp-for="@Model.City">City: </label>
+    <input asp-for="@Model.City" placeholder="HomeTown" />
+
+    <label asp-for="@Model.Region">State/Region: </label>
+    <input asp-for="@Model.Region" placeholder="WI" />
+
+    <label asp-for="@Model.PostalCode">Postal Code: </label>
+    <input asp-for="@Model.PostalCode" placeholder="53072" />
+
+    <label asp-for="@Model.Country">Country: </label>
+    <input asp-for="@Model.Country" placeholder="USA" />
+
+    <label asp-for="@Model.Phone">Phone Number: </label>
+    <input asp-for="@Model.Phone" placeholder="555-555-5555" />
+
+    <label asp-for="@Model.Fax">Fax: </label>
+    <input asp-for="@Model.Fax" placeholder="555-555-5555" />
+
     <button type="submit">Register</button>
 </form>
 
