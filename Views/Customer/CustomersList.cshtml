@@ -1,0 +1,14 @@
+@using Northwind.Models;
+@model IEnumerable<Customer>
+
+
+<h4>Registered Companies</h4>
+
+<div class="list-group">
+    @foreach (Customer c in Model)
+    {
+        <a class="list-group-item list-group-item-action" >@c.CompanyName</a>
+    }
+</div>
+
+

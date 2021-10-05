@@ -15,6 +15,8 @@ namespace Northwind.Controllers
         //http get
         public IActionResult Register() => View();
 
+        public IActionResult CustomersList() => View(_northwindContext.Customer);
+
         //http post
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -29,7 +31,7 @@ namespace Northwind.Controllers
                 else
                 {
                     _northwindContext.AddCustomer(model);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("CustomersList", "Customer");
                 }
             }
             return View();
