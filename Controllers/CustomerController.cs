@@ -69,7 +69,7 @@ namespace Northwind.Controllers
             return View();
         }
         [Authorize(Roles = "northwind-customer")]
-        public IActionResult Account() => View();
+        public IActionResult Account() => View(_northwindContext.Customer.FirstOrDefault(c => c.Email == User.Identity.Name));
 
         public IActionResult CustomersList() => View(_northwindContext.Customer);
 
