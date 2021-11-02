@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Northwind.Models;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -66,6 +68,8 @@ namespace Northwind.Controllers
             }
             return View();
         }
+
+        public IActionResult CustomersList() => View(_northwindContext.Customer);
 
         private void AddErrorsFromResult(IdentityResult result)
         {
