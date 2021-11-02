@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace Northwind.Models
 {
@@ -16,5 +16,6 @@ namespace Northwind.Models
         public bool Discontinued { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+        public ICollection<Review> Reviews { get; set; }
     }
 }
