@@ -46,7 +46,7 @@ namespace Northwind.Controllers
                         else
                         {
                             // Assign user to customers Role
-                            result = await _userManager.AddToRoleAsync(user, "customer");
+                            result = await _userManager.AddToRoleAsync(user, "northwind-customer");
 
                             if (!result.Succeeded)
                             {
