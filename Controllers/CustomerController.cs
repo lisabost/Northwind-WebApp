@@ -70,6 +70,14 @@ namespace Northwind.Controllers
         }
         [Authorize(Roles = "northwind-customer")]
         public IActionResult Account() => View(_northwindContext.Customer.FirstOrDefault(c => c.Email == User.Identity.Name));
+        
+        [Authorize(Roles = "northwind-customer"), HttpPost, ValidateAntiForgeryToken]
+        public IActionResult Account(Customer customer)
+        {
+            // Edit customer info
+            _northwindContext.EditCustomer(customer);
+            return RedirectToAction("Index", "Home");
+        }
 
         public IActionResult CustomersList() => View(_northwindContext.Customer);
 
