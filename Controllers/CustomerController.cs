@@ -25,7 +25,7 @@ namespace Northwind.Controllers
             if (ModelState.IsValid)
             {
                 Customer customer = customerWithPassword.Customer;
-                if (_northwindContext.Customer.Any(c => c.CompanyName == customer.CompanyName))
+                if (_northwindContext.Customers.Any(c => c.CompanyName == customer.CompanyName))
                 {
                     ModelState.AddModelError("", "Company Name must be unique");
                 }
@@ -69,7 +69,7 @@ namespace Northwind.Controllers
             return View();
         }
         [Authorize(Roles = "northwind-customer")]
-        public IActionResult Account() => View(_northwindContext.Customer.FirstOrDefault(c => c.Email == User.Identity.Name));
+        public IActionResult Account() => View(_northwindContext.Customers.FirstOrDefault(c => c.Email == User.Identity.Name));
         
         [Authorize(Roles = "northwind-customer"), HttpPost, ValidateAntiForgeryToken]
         public IActionResult Account(Customer customer)
@@ -79,7 +79,7 @@ namespace Northwind.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult CustomersList() => View(_northwindContext.Customer);
+        public IActionResult CustomersList() => View(_northwindContext.Customers);
 
         private void AddErrorsFromResult(IdentityResult result)
         {
