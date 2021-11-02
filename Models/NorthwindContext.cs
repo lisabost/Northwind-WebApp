@@ -10,7 +10,7 @@ namespace Northwind.Models
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Discount> Discounts { get; set; }
-        public DbSet<Customer> Customer { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         public void AddCustomer(Customer customer)
         {
@@ -20,7 +20,7 @@ namespace Northwind.Models
 
         public void EditCustomer(Customer customer)
         {
-            var customerToUpdate = Customer.FirstOrDefault(c => c.CustomerId == customer.CustomerId);
+            var customerToUpdate = Customers.FirstOrDefault(c => c.CustomerId == customer.CustomerId);
             customerToUpdate.Address = customer.Address;
             customerToUpdate.City = customer.City;
             customerToUpdate.Region = customer.Region;
