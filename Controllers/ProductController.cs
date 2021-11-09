@@ -15,7 +15,10 @@ namespace Northwind.Controllers
 
         public IActionResult Discount() => View(_northwindContext.Discounts);
 
-        public IActionResult CategoryDetail(int id) => View(id);
+        public IActionResult CategoryDetail(int id){
+            ViewBag.id = id;
+            return View(_northwindContext.Categories.OrderBy(c => c.CategoryName));
+        }
 
         public IActionResult DiscountDetail() => View(_northwindContext.Discounts.Where(d => DateTime.Compare(d.EndTime, DateTime.Now) > 0 && DateTime.Compare(d.StartTime, DateTime.Now) <= 0));
 
