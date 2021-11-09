@@ -1,0 +1,36 @@
+﻿@using Northwind.Models
+@model ProductDetailViewModel;
+
+<style>
+    .back {
+        border-radius: 25px;
+    }
+    .btn:hover {
+        background-color: rgba(130,130,130,0.19);
+    }
+</style>
+
+<div class="container">
+    <button class="btn back" action="action"
+            onclick="window.history.go(-1); return false;"
+            type="submit">
+        <i class="fas fa-long-arrow-alt-left fa-2x"></i>
+    </button>
+    <h1>@Model.Product.ProductName</h1>
+    <hr>
+    <h3>Reviews</h3>
+    
+    <span class="review-stars" id="reviews-@Model.Product.ProductId" data-avg="@Model.AvgRating()">
+        <i class="fas fa-star py-2 px-1 rate-popover" data-index="0" title="Very bad"></i>
+        <i class="fas fa-star py-2 px-1 rate-popover" data-index="1" title="Poor"></i>
+        <i class="fas fa-star py-2 px-1 rate-popover" data-index="2" title="OK"></i>
+        <i class="fas fa-star py-2 px-1 rate-popover" data-index="3" title="Good"></i>
+        <i class="fas fa-star py-2 px-1 rate-popover" data-index="4" title="Excellent"></i>
+    </span>
+    <br>
+
+</div>
+
+<script>
+    
+</script>
