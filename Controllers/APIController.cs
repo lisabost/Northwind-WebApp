@@ -18,5 +18,13 @@ namespace Northwind.Controllers
         [HttpGet, Route("api/product/{id}")]
         // returns specific product by specifying the id of the product
         public Product Get(int id) => _northwindContext.Products.FirstOrDefault(p => p.ProductId == id);
+                
+        [HttpGet, Route("api/product/discontinued/{discontinued}")]
+        // returns all products where discontinued = true/false
+        public IEnumerable<Product> GetDiscontinued(bool discontinued) => _northwindContext.Products.Where(p => p.Discontinued == discontinued).OrderBy(p => p.ProductName);
+
+        [HttpGet, Route("api/category/{CategoryId}/product")]
+        // returns all products in a specific category
+        public IEnumerable<Product> GetByCategory(int CategoryId) => _northwindContext.Products.Where(p => p.CategoryId == CategoryId).OrderBy(p => p.ProductName);
     }
 }
