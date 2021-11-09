@@ -1,6 +1,8 @@
 using System;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Northwind.Models;
 using System.Linq;
 
@@ -44,5 +46,25 @@ namespace Northwind.Controllers
             }
             return View(viewModels);
         }
+
+        public IActionResult Review(int id) => View(new AddReviewModel{
+            Product = _northwindContext.Products.Where(p => p.ProductId == id).FirstOrDefault(),
+        });
+
+        [HttpPost, ValidateAntiForgeryToken, Authorize]
+        public IActionResult AddReview(AddReviewModel Model) {
+            if(ModelState.IsValid) {
+                if(Model.Review.Comment.Length <= 0) {
+                    ModelState.AddModelError("", "Comment is required!");
+                }
+                string email = User.Identity.Name;
+                Model.Review.CustomerId = _northwindContext.Customers.Where(c => c.Email == email).FirstOrDefault().CustomerId;
+                Model.Review.ProductId = Model.Product.ProductId;
+                _northwindContext.Add(Model.Review);
+                return RedirectToAction("Product", "ProductDetail", Model.Product.ProductId);
+            }
+            return View();
+        }
+
     }
 }
