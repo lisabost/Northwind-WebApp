@@ -1,0 +1,49 @@
+@using Northwind.Models
+@model IEnumerable<ProductDetailViewModel>
+
+<style>
+    .card {
+        -webkit-box-shadow: 0px 0px 15px -15px #000000; 
+        box-shadow: 0px 0px 15px -15px #000000;
+    }
+    .card:hover {
+        -webkit-transition: all 0.5s ease;
+        transition: all 1s ease;
+        -webkit-box-shadow: 0px 0px 15px 0px #008BDA; 
+        box-shadow: 0px 0px 15px 0px #008BDA;
+        cursor: pointer;
+    }
+</style>
+
+<div class="Container">
+    <h2>Products</h2>
+    @if (Model.Any())
+    {
+        <div class="row">
+            @foreach (ProductDetailViewModel i in Model)
+            {
+                <div class="col py-2">
+                    <div class="card mx-auto" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">@i.Product.ProductName</h5>
+                            <h6 class="">@i.Product.UnitPrice.ToString("c2")</h6>
+                            <span class="review-stars" id="reviews-@i.Product.ProductId" data-avg="@i.AvgRating()">
+                                <i class="fas fa-star py-2 px-1 rate-popover" data-index="0" title="Very bad"></i>
+                                <i class="fas fa-star py-2 px-1 rate-popover" data-index="1" title="Poor"></i>
+                                <i class="fas fa-star py-2 px-1 rate-popover" data-index="2" title="OK"></i>
+                                <i class="fas fa-star py-2 px-1 rate-popover" data-index="3" title="Good"></i>
+                                <i class="fas fa-star py-2 px-1 rate-popover" data-index="4" title="Excellent"></i>
+                            </span>
+                            <a asp-action="ProductDetail" asp-controller="Product" asp-route-id="@i.Product.ProductId" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <h3>No Products Available.</h3>
+    }
+
+</div>

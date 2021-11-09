@@ -15,6 +15,13 @@ namespace Northwind.Controllers
 
         public IActionResult Discount() => View(_northwindContext.Discounts);
 
+        [HttpGet]
+        public IActionResult ProductDetail(int id) => View(new ProductDetailViewModel
+        {
+            Product = _northwindContext.Products.Where(p => p.ProductId == id).FirstOrDefault(),
+            Reviews = _northwindContext.Reviews.Where(r => r.ProductId == id)
+        });
+
         public IActionResult CategoryDetail(int id) => View(new CategoryViewModel
         {
             category = _northwindContext.Categories.FirstOrDefault(c => c.CategoryId == id),
