@@ -1,12 +1,5 @@
-@using Northwind.Models;
-@model CategoryViewModel;
+@model int
 
-@if (Model.product.Count() == 0)
-{
-    <p>There are no products</p>
-}
-else
-{
     <table class="table table-hover">
     <thead>
         <tr>
@@ -15,17 +8,7 @@ else
             <th scope="col" class="text-right">Stock</th>
         </tr>
     </thead>
-    <tbody>
-    <tbody id="product_rows">
-        @foreach (Product p in Model.product)
-        {
-        <tr>
-            <td>@p.ProductName</td>
-            <td class="text-right">@string.Format("{0:c}", p.UnitPrice)</td>
-            <td class="text-right">@p.UnitsInStock</td>
-        </tr>
-        }
-    </tbody>
+    <tbody id="product_rows" data-id="@Model"></tbody>
     </table>   
 
     //api consumer
@@ -35,6 +18,8 @@ else
         $(function () {
             getProducts()
             function getProducts() {
+                var id = $('#product_rows').data('id');
+                alert(id);
                 $.getJSON({
                     url: "../../api/product",
                     success: function (response, textStatus, jqXhr) {
@@ -57,6 +42,3 @@ else
         });
         </script>
     }
-
-    
-}
