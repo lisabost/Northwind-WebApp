@@ -45,7 +45,4 @@ namespace Northwind.Controllers
             return View(viewModels);
         }
     }
-
-        
-
 }
