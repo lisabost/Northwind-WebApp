@@ -30,6 +30,20 @@ namespace Northwind.Controllers
 
         public IActionResult DiscountDetail() => View(_northwindContext.Discounts.Where(d => DateTime.Compare(d.EndTime, DateTime.Now) > 0 && DateTime.Compare(d.StartTime, DateTime.Now) <= 0));
 
+        [HttpGet]
+        public IActionResult Products()
+        {
+            List<ProductDetailViewModel> viewModels = new List<ProductDetailViewModel>();
+            foreach (var product in _northwindContext.Products)
+            {
+                viewModels.Add(new ProductDetailViewModel
+                {
+                    Product = product,
+                    Reviews = _northwindContext.Reviews.Where(r => r.ProductId == product.ProductId)
+                });
+            }
+            return View(viewModels);
+        }
     }
 
         
