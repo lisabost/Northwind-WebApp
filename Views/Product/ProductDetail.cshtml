@@ -5,29 +5,73 @@
     .back {
         border-radius: 25px;
     }
+
     .btn:hover {
-        background-color: rgba(130,130,130,0.19);
+        background-color: rgba(130, 130, 130, 0.19);
     }
 </style>
 
 <div class="container">
-    <button class="btn back" action="action"
-            onclick="window.history.go(-1); return false;"
-            type="submit">
+    <button class="btn back" action="action" onclick="window.history.go(-1); return false;" type="submit">
         <i class="fas fa-long-arrow-alt-left fa-2x"></i>
     </button>
     <h1>@Model.Product.ProductName</h1>
     <hr>
     <h3>Reviews</h3>&nbsp;
 
-    @if(User?.Identity?.IsAuthenticated ?? true) {
+    @if (User?.Identity?.IsAuthenticated ?? true)
+    {
+        @* Old Add Review Button *@
+        @* <a type="button" class="btn btn-primary" asp-controller="Product" asp-action="Review"
+            asp-route-id="@Model.Product.ProductId">Add Review</a>
+            <br> *@
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-review-modal">
+            Add Review
+        </button>
 
-        <a type="button" class="btn btn-primary" asp-controller="Product" asp-action="Review" asp-route-id="@Model.Product.ProductId">Add Review</a>
+        <!-- Modal -->
+        <div class="modal fade" id="add-review-modal" tabindex="-1" aria-labelledby="add-modal-label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="add-modal-label">Create Review</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" asp-action="AddReview">
+                            <div asp-validation-summary="All" style="color:red;"></div>
+                            <div class="form-group">
+                                <label asp-for="@Model.Review.Rating">Rating</label>
+                                <select asp-for="@Model.Review.Rating">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.Review.Comment" for="comment">Comment</label>
+                                <textarea asp-for="@Model.Review.Comment" class="form-control" id="comment"
+                                rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary" type="cubmit">Add Review</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <br>
-
     }
-    
-
 
     <span class="review-stars" id="reviews-@Model.Product.ProductId" data-avg="@Model.AvgRating()">
         <i class="fas fa-star py-2 px-1 rate-popover" data-index="0" title="Very bad"></i>
@@ -41,5 +85,5 @@
 </div>
 
 <script>
-    
+
 </script>

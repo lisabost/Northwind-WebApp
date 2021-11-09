@@ -47,12 +47,8 @@ namespace Northwind.Controllers
             return View(viewModels);
         }
 
-        public IActionResult Review(int id) => View(new AddReviewModel{
-            Product = _northwindContext.Products.Where(p => p.ProductId == id).FirstOrDefault(),
-        });
-
         [HttpPost, ValidateAntiForgeryToken, Authorize]
-        public IActionResult AddReview(AddReviewModel Model) {
+        public IActionResult AddReview(ProductDetailViewModel Model) {
             if(ModelState.IsValid) {
                 if(Model.Review.Comment.Length <= 0) {
                     ModelState.AddModelError("", "Comment is required!");
