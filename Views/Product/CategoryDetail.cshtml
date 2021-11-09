@@ -11,7 +11,7 @@
     <tbody id="product_rows" data-id="@Model"></tbody>
     </table>   
 
-    //api consumer
+    
     @section scripts
     {
         <script>
@@ -19,9 +19,8 @@
             getProducts()
             function getProducts() {
                 var id = $('#product_rows').data('id');
-                alert(id);
                 $.getJSON({
-                    url: "../../api/product",
+                    url: "../../api/category/" + id + "/product/discontinued/false",
                     success: function (response, textStatus, jqXhr) {
                     $('#product_rows').html("");
                     for (var i = 0; i < response.length; i++){
