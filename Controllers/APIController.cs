@@ -14,5 +14,9 @@ namespace Northwind.Controllers
         [HttpGet, Route("api/product")]
         // returns all products
         public IEnumerable<Product> Get() => _northwindContext.Products.OrderBy(p => p.ProductName);
+
+        [HttpGet, Route("api/product/{id}")]
+        // returns specific product by specifying the id of the product
+        public Product Get(int id) => _northwindContext.Products.FirstOrDefault(p => p.ProductId == id);
     }
 }
