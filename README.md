@@ -1,3 +1,3 @@
-<h1>LOOK HERE</h1>
+<h1>LOOK HERE GUYS!</h1>
 
-Should we create an API to get the reviews for a specific product? Im thinking that will make it much nicer since we wouldnt have to refresh the page whenever someone adds a review.
+Im thinking we should use an API to fetch the reviews for a given product when the ProductDetail.cshtml page is loaded. Im going to write a script that will load those reviews and display them in the accordion. Let me know if this will cause problems! You can just let me know by editing this!
