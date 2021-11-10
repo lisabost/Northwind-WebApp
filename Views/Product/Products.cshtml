@@ -3,13 +3,14 @@
 
 <style>
     .card {
-        -webkit-box-shadow: 0px 0px 15px -15px #000000; 
+        -webkit-box-shadow: 0px 0px 15px -15px #000000;
         box-shadow: 0px 0px 15px -15px #000000;
     }
+
     .card:hover {
         -webkit-transition: all 0.5s ease;
         transition: all 1s ease;
-        -webkit-box-shadow: 0px 0px 15px 0px #008BDA; 
+        -webkit-box-shadow: 0px 0px 15px 0px #008BDA;
         box-shadow: 0px 0px 15px 0px #008BDA;
         cursor: pointer;
     }
@@ -34,7 +35,11 @@
                                 <i class="fas fa-star py-2 px-1 rate-popover" data-index="3" title="Good"></i>
                                 <i class="fas fa-star py-2 px-1 rate-popover" data-index="4" title="Excellent"></i>
                             </span>
-                            <a asp-action="ProductDetail" asp-controller="Product" asp-route-id="@i.Product.ProductId" class="stretched-link"></a>
+                            <span>
+                                (@i.Reviews.Count())
+                            </span>
+                            <a asp-action="ProductDetail" asp-controller="Product" asp-route-id="@i.Product.ProductId"
+                        class="stretched-link"></a>
                         </div>
                     </div>
                 </div>
