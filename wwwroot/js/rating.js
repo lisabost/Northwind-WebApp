@@ -14,6 +14,12 @@ function init() {
     });
 }
 
+function setStars(id) {
+    let review_stars = $(`#review-${id}`);
+    let i = review_stars.data('avg');
+    applyClass(review_stars, 'i', 'active-star', i);
+}
+
 function applyClass(parent, el, c, index) {
     $(parent).children(el).each(function() {
         let star = $(this);

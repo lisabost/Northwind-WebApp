@@ -29,7 +29,7 @@
                 success: function (res, status, jqXhr) {
                     let output = "Error processing reviews...";
                     let review_container = $('#reviews');
-                    console.log(res);
+                    
                     if (res.length == 0) {
                         output = `
                             <div class="card">
@@ -51,7 +51,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="card-title">
-                                            <span class="review-stars" id="reviews-@Model.Product.ProductId" data-avg="${review.rating}">
+                                            <span class="review-stars" id="review-${review.reviewId}" data-avg="${review.rating}">
                                                 <i class="fas fa-star py-2 px-1 rate-popover" data-index="0" title="Very bad"></i>
                                                 <i class="fas fa-star py-2 px-1 rate-popover" data-index="1" title="Poor"></i>
                                                 <i class="fas fa-star py-2 px-1 rate-popover" data-index="2" title="OK"></i>
@@ -66,6 +66,7 @@
                                 </div>
                             `;
                             review_container.append(output);
+                            setStars(review.reviewId);
                         }
                     }
                 },
