@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +14,9 @@ namespace Northwind.Controllers
 
         [HttpGet, Route("api/product/{ProductId}/reviews")]
         // returns all products
-        public IEnumerable<Review> Get(int id) => _northwindContext.Reviews.Where(r => r.ProductId == id);
+        public IEnumerable<Review> Get(int ProductId) {
+            return _northwindContext.Reviews.Where(r => r.ProductId == ProductId);
+        } 
     
     }
 }

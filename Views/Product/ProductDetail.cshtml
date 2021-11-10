@@ -13,7 +13,6 @@
     .no-decoration {
         color: blue;
         text-decoration: none;
-        /* no underline */
     }
 </style>
 
@@ -30,6 +29,7 @@
                 success: function (res, status, jqXhr) {
                     let output = "Error processing reviews...";
                     let review_container = $('#reviews');
+                    console.log(res);
                     if (res.length == 0) {
                         output = `
                             <div class="card">
@@ -51,7 +51,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="card-title">
-                                            <span class="review-stars" id="reviews-@Model.Product.ProductId" data-avg="${review.Rating}">
+                                            <span class="review-stars" id="reviews-@Model.Product.ProductId" data-avg="${review.rating}">
                                                 <i class="fas fa-star py-2 px-1 rate-popover" data-index="0" title="Very bad"></i>
                                                 <i class="fas fa-star py-2 px-1 rate-popover" data-index="1" title="Poor"></i>
                                                 <i class="fas fa-star py-2 px-1 rate-popover" data-index="2" title="OK"></i>
@@ -60,7 +60,7 @@
                                             </span>
                                         </div>
                                         <p class="card-text">
-                                            ${review.Comment}
+                                            ${review.comment}
                                         </div>
                                     </div>
                                 </div>
@@ -79,14 +79,18 @@
 }
 
 <div class="container">
+
     <button class="btn back" action="action" onclick="window.history.go(-1); return false;" type="submit">
         <i class="fas fa-long-arrow-alt-left fa-2x"></i>
     </button>
+
     <div class="">
         <h1 id="product-id" class="d-inline-block" data-id="@Model.Product.ProductId">@Model.Product.ProductName</h1>
         <h3 class="float-right">$@Math.Round(Model.Product.UnitPrice, 2)</h3>
     </div>
+
     <hr>
+
     <div>
         <h3 class="mb-0 d-inline-block">Reviews</h3>&nbsp;
         @if (User?.Identity?.IsAuthenticated ?? true)
