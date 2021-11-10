@@ -17,6 +17,9 @@ namespace Northwind.Models
                 total += r.Rating;
                 amt++;
             }
+            if(amt == 0) {
+                return 0;
+            }
             int avg = total / amt;
             return avg;
         }
