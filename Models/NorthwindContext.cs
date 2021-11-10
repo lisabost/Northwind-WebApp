@@ -31,5 +31,11 @@ namespace Northwind.Models
             customerToUpdate.Fax = customer.Fax;
             SaveChanges();
         }
+
+        public void AddReview(Review review) {
+            this.Add(review);
+            this.SaveChanges();
+        }
+
     }
 }

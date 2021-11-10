@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +31,11 @@ namespace Northwind.Controllers
         [HttpGet, Route("api/category/{CategoryId}/product/discontinued/{discontinued}")]
         // returns all products in a specific category where discontinued = true/false
         public IEnumerable<Product> GetByCategoryDiscontinued(int CategoryId, bool discontinued) => _northwindContext.Products.Where(p => p.CategoryId == CategoryId && p.Discontinued == discontinued).OrderBy(p => p.ProductName);
+
+        [HttpGet, Route("api/product/{ProductId}/reviews")]
+        // returns all products
+        public IEnumerable<Review> GetReviews(int ProductId) {
+            return _northwindContext.Reviews.Where(r => r.ProductId == ProductId);
+        } 
     }
 }
-
