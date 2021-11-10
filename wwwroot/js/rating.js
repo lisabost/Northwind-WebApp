@@ -20,6 +20,8 @@ function setStars(id) {
     applyClass(review_stars, 'i', 'active-star', i);
 }
 
+// Finds all 'el' elements in the 'parent' selector and applys the 'c' class to each up to the 'index'
+// - All 'el' elements must have a data-index attribute
 function applyClass(parent, el, c, index) {
     $(parent).children(el).each(function() {
         let star = $(this);
