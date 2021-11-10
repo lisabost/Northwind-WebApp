@@ -21,16 +21,16 @@
 <script>
     // Code fore getting all reviews from api
     // url: api/product/{ProductId}/reviews
-    $(function() {
+    $(function () {
         getReviews();
         function getReviews() {
             let productId = $('#product-id').data('id');
             $.getJSON({
                 url: `../../api/product/${productId}/reviews`,
-                success: function(res, status, jqXhr) {
+                success: function (res, status, jqXhr) {
                     let output = "Error processing reviews...";
                     let review_container = $('#reviews');
-                    if(res.length == 0) {
+                    if (res.length == 0) {
                         output = `
                             <div class="card">
                                 <div class="card-body">
@@ -45,7 +45,7 @@
                         `;
                         review_container.html(output);
                     } else {
-                        for(let i = 0; i < res.length; i++) {
+                        for (let i = 0; i < res.length; i++) {
                             let review = res[i];
                             output = `
                                 <div class="card">
@@ -69,7 +69,7 @@
                         }
                     }
                 },
-                error: function(jqXHR, status, err) {
+                error: function (jqXHR, status, err) {
                     console.log("Error while getting reviews: " + status, err);
                 }
             });
@@ -78,12 +78,14 @@
 </script>
 }
 
-
 <div class="container">
     <button class="btn back" action="action" onclick="window.history.go(-1); return false;" type="submit">
         <i class="fas fa-long-arrow-alt-left fa-2x"></i>
     </button>
-    <h1 id="product-id" data-id="@Model.Product.ProductId">@Model.Product.ProductName</h1>
+    <div class="">
+        <h1 id="product-id" class="d-inline-block" data-id="@Model.Product.ProductId">@Model.Product.ProductName</h1>
+        <h3 class="float-right">$@Math.Round(Model.Product.UnitPrice, 2)</h3>
+    </div>
     <hr>
     <div>
         <h3 class="mb-0 d-inline-block">Reviews</h3>&nbsp;
@@ -135,42 +137,40 @@
         }
     </div>
 
-
-
-<br>
-<div class="accordion" id="accordionExample">
-    <div class="card">
-        <div class="card-header" id="headingOne">
-            @* <h2 class="mb-0">
-                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
-                data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                </button>
-                </h2> *@
-            <div class="d-inline-block" style="z-index: 2;">
-                <span class="review-stars" id="reviews-@Model.Product.ProductId" data-avg="@Model.AvgRating()">
-                    <i class="fas fa-star py-2 px-1 rate-popover" data-index="0" title="Very bad"></i>
-                    <i class="fas fa-star py-2 px-1 rate-popover" data-index="1" title="Poor"></i>
-                    <i class="fas fa-star py-2 px-1 rate-popover" data-index="2" title="OK"></i>
-                    <i class="fas fa-star py-2 px-1 rate-popover" data-index="3" title="Good"></i>
-                    <i class="fas fa-star py-2 px-1 rate-popover" data-index="4" title="Excellent"></i>
-                </span>
-                <span>
-                    (@Model.Reviews.Count())
-                </span>
-            </div>
-            <div class="float-right">
-                <button class="btn back" action="action" type="button" data-toggle="collapse"
+    <br>
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                @* <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
                     data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fas fa-chevron-down"></i>
-                </button>
+                    </button>
+                    </h2> *@
+                <div class="d-inline-block" style="z-index: 2;">
+                    <span class="review-stars" id="reviews-@Model.Product.ProductId" data-avg="@Model.AvgRating()">
+                        <i class="fas fa-star py-2 px-1 rate-popover" data-index="0" title="Very bad"></i>
+                        <i class="fas fa-star py-2 px-1 rate-popover" data-index="1" title="Poor"></i>
+                        <i class="fas fa-star py-2 px-1 rate-popover" data-index="2" title="OK"></i>
+                        <i class="fas fa-star py-2 px-1 rate-popover" data-index="3" title="Good"></i>
+                        <i class="fas fa-star py-2 px-1 rate-popover" data-index="4" title="Excellent"></i>
+                    </span>
+                    <span>
+                        (@Model.Reviews.Count())
+                    </span>
+                </div>
+                <div class="float-right">
+                    <button class="btn back" action="action" type="button" data-toggle="collapse"
+                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
             </div>
-        </div>
 
-        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-            <div id="reviews" class="card-body">
-                @* Review Cards Injected *@
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="reviews" class="card-body">
+                    @* Review Cards Injected *@
+                </div>
             </div>
         </div>
     </div>
-</div>
-<br>
+    <br>
