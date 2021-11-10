@@ -48,16 +48,22 @@ namespace Northwind.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken, Authorize]
-        public IActionResult AddReview(ProductDetailViewModel Model) {
-            if(ModelState.IsValid) {
-                if(Model.Review.Comment.Length <= 0) {
+        public IActionResult AddReview(int id, Review review)
+        {
+            string email = User.Identity.Name;
+            review.ProductId = id;
+            if(ModelState.IsValid)
+            {
+                if(review.Comment.Length <= 0)
+                {
                     ModelState.AddModelError("", "Comment is required!");
                 }
-                string email = User.Identity.Name;
-                Model.Review.CustomerId = _northwindContext.Customers.Where(c => c.Email == email).FirstOrDefault().CustomerId;
-                Model.Review.ProductId = Model.Product.ProductId;
-                _northwindContext.Add(Model.Review);
-                return RedirectToAction("Product", "ProductDetail", Model.Product.ProductId);
+                else
+                {
+                    review.CustomerId = _northwindContext.Customers.Where(c => c.Email == email).FirstOrDefault().CustomerId;
+                    _northwindContext.AddReview(review);
+                    return RedirectToAction("Products", "Product", review.ProductId);
+                }
             }
             return View();
         }
