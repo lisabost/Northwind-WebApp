@@ -1,3 +1,3 @@
-<h1>LOOK HERE GUYS!</h1>
+<h1>PROJECT NOTES</h1>
 
-Im thinking we should use an API to fetch the reviews for a given product when the ProductDetail.cshtml page is loaded. Im going to write a script that will load those reviews and display them in the accordion. Let me know if this will cause problems! You can just let me know by editing this README.md file in this repo!
+I added an API controller class to the project to help us with fetching reviews for products. Im thinking this will make it look better when a customer adds a review and the page doesnt need to reload, it can just grab the update reviews using the api. - Jeff
