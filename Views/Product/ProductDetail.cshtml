@@ -144,10 +144,11 @@
     </div>
 
     <br>
+
     <div class="accordion" id="accordionExample">
         <div class="card">
-            <div class="card-header" id="headingOne">
-                <div class="d-inline-block" style="z-index: 2;">
+            <div class="btn card-header" id="headingOne" action="action" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <div class="d-inline-block float-left" style="z-index: 2;">
                     <span class="review-stars" id="reviews-@Model.Product.ProductId" data-avg="@Model.AvgRating()">
                         <i class="fas fa-star py-2 px-1 rate-popover" data-index="0" title="Very bad"></i>
                         <i class="fas fa-star py-2 px-1 rate-popover" data-index="1" title="Poor"></i>
@@ -160,17 +161,13 @@
                     </span>
                 </div>
                 <div class="float-right">
-                    <button class="btn back" action="action" type="button" data-toggle="collapse"
-                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
+                    @* <button class="btn back" action="action" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">   
+                    </button> *@
+                    <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
-
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <div id="reviews" class="card-body">
-                    @* Review Cards Injected *@
-                </div>
+                <div id="reviews" class="card-body"></div>
             </div>
         </div>
     </div>
