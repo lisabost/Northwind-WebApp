@@ -5,8 +5,7 @@
     //     let targetStarIndex = $(e.target).data('index');
     //     applyClass(this, 'i', 'active-star', targetStarIndex);
     // });
-    $('#reviews-header-btn').click(function(e) {
-        console.log('Header');
+    $('#reviews-header-btn').click(function() {
         let up = $('#arrow-up');
         let down = $('#arrow-down');
         if(up.hasClass('d-none')) {
