@@ -5,6 +5,18 @@
     //     let targetStarIndex = $(e.target).data('index');
     //     applyClass(this, 'i', 'active-star', targetStarIndex);
     // });
+    $('#reviews-header-btn').click(function(e) {
+        console.log('Header');
+        let up = $('#arrow-up');
+        let down = $('#arrow-down');
+        if(up.hasClass('d-none')) {
+            up.removeClass('d-none');
+            down.addClass('d-none');
+        } else {
+            up.addClass('d-none');
+            down.removeClass('d-none');
+        }
+    });
 });
 
 function init() {

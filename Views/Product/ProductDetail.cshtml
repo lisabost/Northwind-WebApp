@@ -48,7 +48,7 @@
                         for (let i = 0; i < res.length; i++) {
                             let review = res[i];
                             output = `
-                                <div class="card">
+                                <div class="card mb-3">
                                     <div class="card-body">
                                         <div class="card-title">
                                             <span class="review-stars" id="review-${review.reviewId}" data-avg="${review.rating}">
@@ -147,7 +147,7 @@
 
     <div class="accordion" id="accordionExample">
         <div class="card">
-            <div class="btn card-header" id="headingOne" action="action" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <div id="reviews-header-btn" class="btn card-header" id="headingOne" action="action" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 <div class="d-inline-block float-left" style="z-index: 2;">
                     <span class="review-stars" id="reviews-@Model.Product.ProductId" data-avg="@Model.AvgRating()">
                         <i class="fas fa-star py-2 px-1 rate-popover" data-index="0" title="Very bad"></i>
@@ -163,7 +163,8 @@
                 <div class="float-right">
                     @* <button class="btn back" action="action" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">   
                     </button> *@
-                    <i class="fas fa-chevron-down"></i>
+                    <i id="arrow-up" class="d-none fas fa-chevron-up"></i>
+                    <i id="arrow-down" class="fas fa-chevron-down"></i>
                 </div>
             </div>
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
