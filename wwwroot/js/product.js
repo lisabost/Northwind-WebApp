@@ -49,9 +49,32 @@ $(function () {
         var total = parseInt($(this).val()) * parseFloat($('#UnitPrice').html());
         $('#Total').html(numberWithCommas(total.toFixed(2)));
     });
-    
+
     // function to display commas in number
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
+
+    //Using product id, customer id, and quantity call API method using AJAX
+    $('#addToCart').on('click', function(){
+        $('#cartModal').modal('hide');
+        $.ajax({
+            headers: { "Content-Type": "application/json" },
+            url: "../../api/addtocart",
+            type: 'post',
+            data: JSON.stringify({
+                    "id": Number($('#ProductId').html()),
+                    "email": $('#User').data('email'),
+                    "qty": Number($('#Quantity').val()) 
+                }),
+            success: function (response, textStatus, jqXhr) {
+                // success
+                console.log(response);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                // log the error to the console
+                console.log("The following error occured: " + jqXHR.status, errorThrown);
+            }
+        });
+    });
 });
