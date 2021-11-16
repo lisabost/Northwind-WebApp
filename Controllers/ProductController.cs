@@ -24,7 +24,8 @@ namespace Northwind.Controllers
             Reviews = _northwindContext.Reviews.Where(r => r.ProductId == id)
         });
 
-        public IActionResult Index(int id){
+        public IActionResult Index(int id)
+        {
             ViewBag.id = id;
             return View(_northwindContext.Categories.OrderBy(c => c.CategoryName));
         }
@@ -51,20 +52,32 @@ namespace Northwind.Controllers
         {
             string email = User.Identity.Name;
             review.ProductId = id;
-            if(ModelState.IsValid)
+            if (HasPurchased(id, email))
             {
-                if(review.Comment.Length <= 0)
+                if (ModelState.IsValid)
                 {
-                    ModelState.AddModelError("", "Comment is required!");
+                    if (review.Comment.Length <= 0)
+                    {
+                        ModelState.AddModelError("", "Comment is required!");
+                    }
+                    else
+                    {
+                        review.CustomerId = _northwindContext.Customers.Where(c => c.Email == email).FirstOrDefault().CustomerId;
+                        _northwindContext.AddReview(review);
+                        return RedirectToAction("Products", "Product", review.ProductId);
+                    }
                 }
-                else
-                {
-                    review.CustomerId = _northwindContext.Customers.Where(c => c.Email == email).FirstOrDefault().CustomerId;
-                    _northwindContext.AddReview(review);
-                    return RedirectToAction("Products", "Product", review.ProductId);
-                }
+            } else {
+                ModelState.AddModelError("", "You have not purched this product!");
             }
+
             return View();
+        }
+
+        public Boolean HasPurchased(int productId, string email)
+        {
+            Customer c = _northwindContext.Customers.Where(c => c.Email == email).FirstOrDefault();
+            return false;
         }
 
     }
