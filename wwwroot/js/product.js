@@ -6,17 +6,17 @@ $(function () {
         $.getJSON({
             url: "../../api/category/" + id + "/product" + discontinued,
             success: function (response, textStatus, jqXhr) {
-            $('#product_rows').html("");
-            for (var i = 0; i < response.length; i++){
-                var css = response[i].discontinued ? " class=\"discontinued\"" : "";
-                var row = "<tr" + css + " data-id=\"" + response[i].productId + "\">"
-                    + "<td>" + response[i].productName + "</td>"
-                    + "<td class=\"text-right\">$" + response[i].unitPrice.toFixed(2) + "</td>"
-                    + "<td class=\"text-right\">" + response[i].unitsInStock + "</td>"
-                    + "</tr>";
-                console.log(row);
-                $('#product_rows').append(row);
-            }
+                $('#product_rows').html("");
+                for (var i = 0; i < response.length; i++) {
+                    var css = response[i].discontinued ? " class=\"discontinued\"" : "";
+                    var row = "<tr" + css + " data-id=\"" + response[i].productId + "\">"
+                        + "<td>" + response[i].productName + "</td>"
+                        + "<td class=\"text-right\">$" + response[i].unitPrice.toFixed(2) + "</td>"
+                        + "<td class=\"text-right\">" + response[i].unitsInStock + "</td>"
+                        + "</tr>";
+                    console.log(row);
+                    $('#product_rows').append(row);
+                }
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 // log the error to the console
@@ -24,11 +24,15 @@ $(function () {
             }
         });
     }
-    $('#CategoryId').on('change', function(){
+    $('#CategoryId').on('change', function () {
         $('#product_rows').data('id', $(this).val());
         getProducts();
     });
-    $('#Discontinued').on('change', function(){
+    $('#Discontinued').on('change', function () {
         getProducts();
+    });
+    // delegated event listener
+    $('#product_rows').on('click', 'tr', function () {
+        console.log($(this).data('id'));
     });
 });
