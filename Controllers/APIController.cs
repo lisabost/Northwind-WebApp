@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Northwind.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Northwind.Controllers
 {
@@ -34,10 +35,14 @@ namespace Northwind.Controllers
 
         [HttpGet, Route("api/product/{ProductId}/reviews")]
         // returns all products
-        public IEnumerable<Review> GetReviews(int ProductId)
+        public IEnumerable<ReviewJSON> GetReviews(int ProductId)
         {
-            IEnumerable<Review> reviews = _northwindContext.Reviews.Where(r => r.ProductId == ProductId);
-            return reviews;
+            return _northwindContext.Reviews.Where(r => r.ProductId == ProductId).Select(r => new ReviewJSON{
+                RatingId = r.ReviewId,
+                Rating = r.Rating,
+                Comment = r.Comment,
+                Name = r.Customer.Email
+            });
         }
 
         [HttpPost, Route("api/addtocart")]

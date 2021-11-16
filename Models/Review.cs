@@ -15,8 +15,8 @@ namespace Northwind.Models
 
         public int CustomerId { get; set; }
 
-        public Product products { get; set; }
+        public Product Product { get; set; }
 
-        public Customer customer { get; set; }
+        public Customer Customer { get; set; }
     }
 }

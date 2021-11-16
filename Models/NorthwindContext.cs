@@ -9,6 +9,9 @@ namespace Northwind.Models
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        // REMOVE Orders and OrderDetails if performing migration
+        public DbSet<Orders> Orders {get; set;}
+        public DbSet<OrderDetails> OrderDetails {get; set;}
         public DbSet<Discount> Discounts { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Review> Reviews { get; set; }
