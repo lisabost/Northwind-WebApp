@@ -40,7 +40,7 @@ namespace Northwind.Models
             this.SaveChanges();
         }
 
-        //add items selected to cart
+        //add items selected to the CartItems table
         public CartItem AddToCart(CartItemJSON cartItemJSON)
         {
             CartItem cartItem = new CartItem()

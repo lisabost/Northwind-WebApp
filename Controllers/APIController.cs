@@ -19,7 +19,7 @@ namespace Northwind.Controllers
         [HttpGet, Route("api/product/{id}")]
         // returns specific product by specifying the id of the product
         public Product Get(int id) => _northwindContext.Products.FirstOrDefault(p => p.ProductId == id);
-                
+
         [HttpGet, Route("api/product/discontinued/{discontinued}")]
         // returns all products where discontinued = true/false
         public IEnumerable<Product> GetDiscontinued(bool discontinued) => _northwindContext.Products.Where(p => p.Discontinued == discontinued).OrderBy(p => p.ProductName);
@@ -34,9 +34,14 @@ namespace Northwind.Controllers
 
         [HttpGet, Route("api/product/{ProductId}/reviews")]
         // returns all products
-        public IEnumerable<Review> GetReviews(int ProductId) {
+        public IEnumerable<Review> GetReviews(int ProductId)
+        {
             IEnumerable<Review> reviews = _northwindContext.Reviews.Where(r => r.ProductId == ProductId);
             return reviews;
-        } 
+        }
+
+        [HttpPost, Route("api/addtocart")]
+        // adds a row to the cartitem table
+        public CartItem Post([FromBody] CartItemJSON cartItem) => _northwindContext.AddToCart(cartItem);
     }
 }
