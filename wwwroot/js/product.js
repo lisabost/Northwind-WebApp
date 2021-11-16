@@ -6,16 +6,16 @@ $(function () {
         $.getJSON({
             url: "../../api/category/" + id + "/product" + discontinued,
             success: function (response, textStatus, jqXhr) {
-                $('#product_rows').html("");
-                for (var i = 0; i < response.length; i++){
-                    var css = response[i].discontinued ? " class=\"discontinued\"" : "";
-                    var row = "<tr" + css + ">"
-                        + "<td>" + response[i].productName + "</td>"
-                        + "<td class=\"text-right\">$" + response[i].unitPrice.toFixed(2) + "</td>"
-                        + "<td class=\"text-right\">" + response[i].unitsInStock + "</td>"
-                        + "</tr>";
-                    $('#product_rows').append(row);
-                }
+            $('#product_rows').html("");
+            for (var i = 0; i < response.length; i++){
+                var css = response[i].discontinued ? " class=\"discontinued\"" : "";
+                var row = "<tr" + css + ">"
+                    + "<td>" + response[i].productName + "</td>"
+                    + "<td class=\"text-right\">$" + response[i].unitPrice.toFixed(2) + "</td>"
+                    + "<td class=\"text-right\">" + response[i].unitsInStock + "</td>"
+                    + "</tr>";
+                $('#product_rows').append(row);
+            }
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 // log the error to the console
