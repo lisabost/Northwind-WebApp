@@ -76,8 +76,7 @@ namespace Northwind.Controllers
 
         public Boolean HasPurchased(int productId, string email)
         {
-            Customer c = _northwindContext.Customers.Where(c => c.Email == email).FirstOrDefault();
-            return false;
+            return _northwindContext.OrderDetails.Where(od => od.ProductId == productId).Any(o => o.Order.Customer.Email == email);
         }
 
     }
