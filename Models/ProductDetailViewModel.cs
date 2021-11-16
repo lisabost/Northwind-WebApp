@@ -11,11 +11,17 @@ namespace Northwind.Models
         public int AvgRating()
         {
             int total = 0;
+            int amt = 0;
             foreach (Review r in Reviews)
             {
                 total += r.Rating;
+                amt++;
             }
-            return total;
+            if(amt == 0) {
+                return 0;
+            }
+            int avg = total / amt;
+            return avg;
         }
         
     }

@@ -35,7 +35,8 @@ namespace Northwind.Controllers
         [HttpGet, Route("api/product/{ProductId}/reviews")]
         // returns all products
         public IEnumerable<Review> GetReviews(int ProductId) {
-            return _northwindContext.Reviews.Where(r => r.ProductId == ProductId);
+            IEnumerable<Review> reviews = _northwindContext.Reviews.Where(r => r.ProductId == ProductId);
+            return reviews;
         } 
     }
 }
