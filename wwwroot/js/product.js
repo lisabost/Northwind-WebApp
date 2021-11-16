@@ -35,7 +35,7 @@ $(function () {
     });
 
     // delegated event listener
-    $('#product_rows').on('click', 'tr', function () {
+    $('#product_rows').on('click', 'tr', function(){
         // make sure a customer is logged in
         if ($('#User').data('customer').toLowerCase() == "true"){
             $('#ProductId').html($(this).data('id'));
@@ -45,7 +45,7 @@ $(function () {
             $('#Quantity').change();
             $('#cartModal').modal();
         } else {
-            alert("Only signed in customers can add items to the cart");
+            toast("Access Denied", "You must be signed in as a customer to access the cart.");
         }
     });
 
@@ -74,12 +74,17 @@ $(function () {
             }),
             success: function (response, textStatus, jqXhr) {
                 // success
-                console.log(response);
+                toast("Product Added", response.product.productName + " successfully added to cart.");
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 // log the error to the console
-                console.log("The following error occured: " + jqXHR.status, errorThrown);
+                toast("Error", "Please try again later.");
             }
         });
     });
+    function toast(header, message) {
+        $('#toast_header').html(header);
+        $('#toast_body').html(message);
+        $('#cart_toast').toast({ delay: 2500 }).toast('show');
+    }
 });

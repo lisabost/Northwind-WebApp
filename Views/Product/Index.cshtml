@@ -2,7 +2,8 @@
 @model IEnumerable<Category>
 
 @* invisible element to save loged in user's email -- only logged in customer can add items to the cart*@
-<div id="User" style="display:none;" data-email='@User.Identity.Name" data-customer="@User.IsInRole("customer")'></div>
+<div id="User" style="display:none;" data-email="@User.Identity.Name"
+    data-customer='@User.IsInRole("northwind-customer")'></div>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -74,6 +75,18 @@
                 <button type="button" class="btn btn-primary" id="addToCart">Continue</button>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- toast -->
+<!-- Flexbox container for aligning the toasts -->
+<div id="cart_toast" class="toast bg-info text-light" role="alert" aria-live="assertive" aria-atomic="true"
+    style="position: fixed;top: 65px;right: 10px;">
+    <div class="toast-header">
+        <strong id="toast_header">This is a toast header</strong>
+    </div>
+    <div class="toast-body" id="toast_body">
+        This is a toast message.
     </div>
 </div>
 
