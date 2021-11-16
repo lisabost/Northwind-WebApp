@@ -33,9 +33,26 @@ namespace Northwind.Models
             SaveChanges();
         }
 
-        public void AddReview(Review review) {
+        //create a review
+        public void AddReview(Review review)
+        {
             this.Add(review);
             this.SaveChanges();
+        }
+
+        //add items selected to cart
+        public CartItem AddToCart(CartItemJSON cartItemJSON)
+        {
+            CartItem cartItem = new CartItem()
+            {
+                CustomerId = Customers.FirstOrDefault(c => c.Email == cartItemJSON.email).CustomerId,
+                ProductId = cartItemJSON.id,
+                Quantity = cartItemJSON.qty
+            };
+            CartItems.Add(cartItem);
+            SaveChanges();
+            cartItem.Product = Products.Find(cartItem.ProductId);
+            return cartItem;
         }
 
     }
