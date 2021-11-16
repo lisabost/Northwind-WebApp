@@ -24,7 +24,7 @@ namespace Northwind.Controllers
             Reviews = _northwindContext.Reviews.Where(r => r.ProductId == id)
         });
 
-        public IActionResult CategoryDetail(int id){
+        public IActionResult Index(int id){
             ViewBag.id = id;
             return View(_northwindContext.Categories.OrderBy(c => c.CategoryName));
         }

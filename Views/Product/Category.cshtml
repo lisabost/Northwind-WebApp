@@ -4,6 +4,6 @@
 <div class="list-group">
     @foreach (Category c in Model)
     {
-        <a class="list-group-item list-group-item-action" asp-action="CategoryDetail" asp-controller="Product" asp-route-id="@c.CategoryId">@c.CategoryName - @c.Description</a>
+        <a class="list-group-item list-group-item-action" asp-action="Index" asp-controller="Product" asp-route-id="@c.CategoryId">@c.CategoryName - @c.Description</a>
     }
 </div>
