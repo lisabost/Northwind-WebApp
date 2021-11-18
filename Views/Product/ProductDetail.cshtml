@@ -51,12 +51,12 @@
                                 <div class="card mb-3">
                                     <div class="card-body">
                                         <div class="card-title">
-                                            <span class="review-stars" id="review-${review.ratingId}" data-avg="${review.rating}">
-                                                <i class="fas fa-star py-2 px-1 rate-popover" data-index="0" title="Very bad"></i>
-                                                <i class="fas fa-star py-2 px-1 rate-popover" data-index="1" title="Poor"></i>
-                                                <i class="fas fa-star py-2 px-1 rate-popover" data-index="2" title="OK"></i>
-                                                <i class="fas fa-star py-2 px-1 rate-popover" data-index="3" title="Good"></i>
-                                                <i class="fas fa-star py-2 px-1 rate-popover" data-index="4" title="Excellent"></i>
+                                            <span class="review-stars" id="review-${review.ratingId}" data-rating="${review.rating}" data-interactive="false">
+                                                <i class="far fa-star rate-popover" data-value="2"></i>
+                                                <i class="far fa-star rate-popover" data-value="4"></i>
+                                                <i class="far fa-star rate-popover" data-value="6"></i>
+                                                <i class="far fa-star rate-popover" data-value="8"></i>
+                                                <i class="far fa-star rate-popover" data-value="10"></i>
                                             </span>
                                             <span>&nbsp;|&nbsp;${review.name}</span>
                                         </div>
@@ -67,7 +67,7 @@
                                 </div>
                             `;
                             review_container.append(output);
-                            setStars(review.ratingId);
+                            
                         }
                     }
                 },
@@ -150,12 +150,12 @@
         <div class="card">
             <div id="reviews-header-btn" class="btn card-header" id="headingOne" action="action" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 <div class="d-inline-block float-left" style="z-index: 2;">
-                    <span class="review-stars" id="reviews-@Model.Product.ProductId" data-avg="@Model.AvgRating()">
-                        <i class="fas fa-star py-2 px-1 rate-popover" data-index="0" title="Very bad"></i>
-                        <i class="fas fa-star py-2 px-1 rate-popover" data-index="1" title="Poor"></i>
-                        <i class="fas fa-star py-2 px-1 rate-popover" data-index="2" title="OK"></i>
-                        <i class="fas fa-star py-2 px-1 rate-popover" data-index="3" title="Good"></i>
-                        <i class="fas fa-star py-2 px-1 rate-popover" data-index="4" title="Excellent"></i>
+                    <span class="review-stars" id="review-@Model.Product.ProductId" data-rating="@Model.AvgRating()" data-interactive="false">
+                        <i class="far fa-star rate-popover" data-value="2"></i>
+                        <i class="far fa-star rate-popover" data-value="4"></i>
+                        <i class="far fa-star rate-popover" data-value="6"></i>
+                        <i class="far fa-star rate-popover" data-value="8"></i>
+                        <i class="far fa-star rate-popover" data-value="10"></i>
                     </span>
                     <span>
                         (@Model.Reviews.Count())

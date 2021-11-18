@@ -80,10 +80,28 @@ a.navbar-brand {
   
     /* Review Component Styles */
 
-    .active-star {
+    /* .active-star {
       color: #ffe014;
+    } */
+
+
+
+
+    .review-stars {
+      padding: 0;
+      margin: 0 0;
+      cursor: pointer;
+    }
+    
+    .review-stars i {
+        padding: 0;
+        margin: 0;
+        border: none;
+        width: 18px;
     }
   
+
+    
     /* Discontinued Product Style */
     .discontinued {
       opacity: .5;

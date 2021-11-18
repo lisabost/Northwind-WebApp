@@ -29,12 +29,12 @@
                         <div class="card-body">
                             <h5 class="card-title">@i.Product.ProductName</h5>
                             <h6 class="">@i.Product.UnitPrice.ToString("c2")</h6>
-                            <span class="review-stars" id="reviews-@i.Product.ProductId" data-avg="@i.AvgRating()">
-                                <i class="fas fa-star py-2 px-1 rate-popover" data-index="0" title="Very bad"></i>
-                                <i class="fas fa-star py-2 px-1 rate-popover" data-index="1" title="Poor"></i>
-                                <i class="fas fa-star py-2 px-1 rate-popover" data-index="2" title="OK"></i>
-                                <i class="fas fa-star py-2 px-1 rate-popover" data-index="3" title="Good"></i>
-                                <i class="fas fa-star py-2 px-1 rate-popover" data-index="4" title="Excellent"></i>
+                            <span style="" class="review-stars" id="review-@i.Product.ProductId" data-rating="@i.AvgRating()" data-interactive="false">
+                                <i class="far fa-star rate-popover" data-value="2"></i>
+                                <i class="far fa-star rate-popover" data-value="4"></i>
+                                <i class="far fa-star rate-popover" data-value="6"></i>
+                                <i class="far fa-star rate-popover" data-value="8"></i>
+                                <i class="far fa-star rate-popover" data-value="10"></i>
                             </span>
                             <span>
                                 (@i.Reviews.Count())
