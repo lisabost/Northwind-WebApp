@@ -20,7 +20,7 @@
 <script>
     // Code fore getting all reviews from api
     // url: api/product/{ProductId}/reviews
-    $(function () {
+    $(() => {
         getReviews();
         function getReviews() {
             let productId = $('#product-id').data('id');
@@ -67,7 +67,7 @@
                                 </div>
                             `;
                             review_container.append(output);
-                            
+                            setStars($(`#review-${review.ratingId}`), review.rating);
                         }
                     }
                 },

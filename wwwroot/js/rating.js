@@ -53,32 +53,6 @@
         });
     }
 
-    // Receives rating (0)1-10, converts to
-    function setStars(el, rating) {
-        if(rating === 0) return;
-        let adj = rating / 2;
-        el.children('i').each(function(index) {
-            let i = $(this);
-            if(adj > index && (adj - index) > .5) {
-                // Full Star
-                i.css('color', 'gold');
-                i.removeClass();
-                i.addClass('fas fa-star');
-            } else if((adj - index) === .5) {
-                // Half Star
-                i.css('color', 'gold');
-                i.removeClass();
-                i.addClass('fas fa-star-half-alt');
-            } else {
-                // Empty Star
-                i.css('color', 'black');
-                i.removeClass();
-                i.addClass('far fa-star');
-            }
-            // py-2 px-1 *Removed
-            i.addClass('rate-popover');
-        });
-    }
 
     addEventListener('mousemove', (e) => {
         mouse.x = e.clientX;
@@ -86,4 +60,32 @@
     });
 
 });
+
+// Receives rating (0)1-10, converts to
+function setStars(el, rating) {
+    console.log(el);
+    if(rating === 0) return;
+    let adj = rating / 2;
+    el.children('i').each(function(index) {
+        let i = $(this);
+        if(adj > index && (adj - index) > .5) {
+            // Full Star
+            i.css('color', 'gold');
+            i.removeClass();
+            i.addClass('fas fa-star');
+        } else if((adj - index) === .5) {
+            // Half Star
+            i.css('color', 'gold');
+            i.removeClass();
+            i.addClass('fas fa-star-half-alt');
+        } else {
+            // Empty Star
+            i.css('color', 'black');
+            i.removeClass();
+            i.addClass('far fa-star');
+        }
+        // py-2 px-1 *Removed
+        i.addClass('rate-popover');
+    });
+}
 
