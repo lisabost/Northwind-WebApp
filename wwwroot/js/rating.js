@@ -1,15 +1,4 @@
-﻿$('#reviews-header-btn').click(function() {
-    let chevron = $('#chevron');
-    if(chevron.hasClass('fa-chevron-up')) {
-        chevron.removeClass('fa-chevron-up');
-        chevron.addClass('fa-chevron-down');
-    } else {
-        chevron.removeClass('fa-chevron-down');
-        chevron.addClass('fa-chevron-up');
-    }
-})
-
-$(document).ready(() => {
+﻿$(document).ready(() => {
     init();
     let mouse = { x: 0, y: 0 }
 
@@ -65,6 +54,19 @@ $(document).ready(() => {
         mouse.y = e.clientY;
     });
 
+});
+
+// Global Functions
+
+$('#reviews-header-btn').click(function() {
+    let chevron = $('#chevron');
+    if(chevron.hasClass('fa-chevron-up')) {
+        chevron.removeClass('fa-chevron-up');
+        chevron.addClass('fa-chevron-down');
+    } else {
+        chevron.removeClass('fa-chevron-down');
+        chevron.addClass('fa-chevron-up');
+    }
 });
 
 function setStars(el, rating) {
