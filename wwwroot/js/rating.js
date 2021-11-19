@@ -28,7 +28,6 @@ $(document).ready(() => {
             hoveredRatingStars.data('rating', savedRating);
             setStars(hoveredRatingStars, savedRating);
             clearInterval(intervalId);
-            console.log('exit', hoveredRatingStars.data('rating'));
         }
     });
 
