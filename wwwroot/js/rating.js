@@ -1,4 +1,16 @@
-﻿$(document).ready(() => {
+﻿$('#reviews-header-btn').click(function() {
+    let chevron = $('#chevron');
+    if(chevron.hasClass('fa-chevron-up')) {
+        chevron.removeClass('fa-chevron-up');
+        chevron.addClass('fa-chevron-down');
+    } else {
+        chevron.removeClass('fa-chevron-down');
+        chevron.addClass('fa-chevron-up');
+    }
+    
+})
+
+$(document).ready(() => {
 
     init();
 
@@ -63,7 +75,6 @@
 
 // Receives rating (0)1-10, converts to 1-5 and applys classes to review-stars el
 function setStars(el, rating) {
-    console.log(el);
     if(rating === 0) return;
     let adj = rating / 2;
     el.children('i').each(function(index) {
