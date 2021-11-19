@@ -6,12 +6,12 @@
     $('.review-stars').hover(function() {
         let delay = 10;
         hoveredRatingStars = $(this);
-        if(hoveredRatingStars.data('interactive')) {
+        if(isInteractive(hoveredRatingStars)) {
             savedRating = hoveredRatingStars.data('rating');
             intervalId = setInterval(interactive, delay);
         }
     }, function () {
-        if(hoveredRatingStars.data('interactive')) {
+        if(isInteractive(hoveredRatingStars)) {
             hoveredRatingStars.data('rating', savedRating);
             setStars(hoveredRatingStars, savedRating);
             clearInterval(intervalId);
@@ -19,7 +19,7 @@
     });
 
     $('.review-stars').click(function () {
-        if(hoveredRatingStars.data('interactive')) savedRating = hoveredRating;
+        if(isInteractive(hoveredRatingStars)) savedRating = hoveredRating;
     });
 
     let hoverPadding = 1;
@@ -40,6 +40,10 @@
                 setStars(hoveredRatingStars, final);
             }
         });
+    }
+
+    function isInteractive(el) {
+        return el.data('interactive') ? true : false;
     }
 
     function init() {
