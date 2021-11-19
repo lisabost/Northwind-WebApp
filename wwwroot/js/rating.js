@@ -61,7 +61,7 @@
 
 });
 
-// Receives rating (0)1-10, converts to
+// Receives rating (0)1-10, converts to 1-5 and applys classes to review-stars el
 function setStars(el, rating) {
     console.log(el);
     if(rating === 0) return;
