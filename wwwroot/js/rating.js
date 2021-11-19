@@ -19,7 +19,6 @@ $(document).ready(() => {
     $('.review-stars').hover(function() {
         let delay = 10;
         hoveredRatingStars = $(this);
-        console.log(hoveredRatingStars);
         if(hoveredRatingStars.data('interactive')) {
             savedRating = hoveredRatingStars.data('rating');
             intervalId = setInterval(interactive, delay);
@@ -53,7 +52,6 @@ $(document).ready(() => {
                 // Calc final value
                 let final = isHalf ? (starI - 1) : (starI);
                 hoveredRating = final;
-                console.log(final);
                 setStars(hoveredRatingStars, final);
             }
         });
@@ -66,7 +64,6 @@ $(document).ready(() => {
         });
     }
 
-
     addEventListener('mousemove', (e) => {
         mouse.x = e.clientX;
         mouse.y = e.clientY;
@@ -74,7 +71,7 @@ $(document).ready(() => {
 
 });
 
-// Receives rating (0)1-10, converts to 1-5 and applys classes to review-stars el
+// Receives rating 1-10, converts to 1-5 and applys classes to review-stars el
 function setStars(el, rating) {
     if(rating === 0) return;
     let adj = rating / 2;
