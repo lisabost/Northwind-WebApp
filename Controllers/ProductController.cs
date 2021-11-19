@@ -52,6 +52,8 @@ namespace Northwind.Controllers
         {
             string email = User.Identity.Name;
             review.ProductId = id;
+            Console.WriteLine(HasPurchased(id, email));
+            // Error on un-purchased item!
             if (HasPurchased(id, email))
             {
                 if (ModelState.IsValid)
