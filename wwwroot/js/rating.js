@@ -28,6 +28,7 @@ $(document).ready(() => {
             hoveredRatingStars.data('rating', savedRating);
             setStars(hoveredRatingStars, savedRating);
             clearInterval(intervalId);
+            console.log('exit', hoveredRatingStars.data('rating'));
         }
     });
 
@@ -37,6 +38,7 @@ $(document).ready(() => {
 
     let hoverPadding = 1;
     function interactive() {
+        console.log(hoveredRatingStars.data('rating'));
         hoveredRatingStars.children().each(function() {
             if(this.matches(':hover')) {
                 // Get hovered variables

@@ -80,13 +80,6 @@ a.navbar-brand {
   
     /* Review Component Styles */
 
-    /* .active-star {
-      color: #ffe014;
-    } */
-
-
-
-
     .review-stars {
       padding: 0;
       margin: 0 0;
@@ -98,6 +91,10 @@ a.navbar-brand {
         margin: 0;
         border: none;
         width: 18px;
+    }
+
+    #review-new i {
+      font-size: 20px;
     }
   
 
