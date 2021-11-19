@@ -7,7 +7,6 @@
         chevron.removeClass('fa-chevron-down');
         chevron.addClass('fa-chevron-up');
     }
-    
 })
 
 $(document).ready(() => {
@@ -20,12 +19,13 @@ $(document).ready(() => {
     $('.review-stars').hover(function() {
         let delay = 10;
         hoveredRatingStars = $(this);
+        console.log(hoveredRatingStars);
         if(hoveredRatingStars.data('interactive')) {
             savedRating = hoveredRatingStars.data('rating');
             intervalId = setInterval(interactive, delay);
         }
     }, function () {
-        if(hoveredRating.data('interactive')) {
+        if(hoveredRatingStars.data('interactive')) {
             hoveredRatingStars.data('rating', savedRating);
             setStars(hoveredRatingStars, savedRating);
             clearInterval(intervalId);
@@ -53,6 +53,7 @@ $(document).ready(() => {
                 // Calc final value
                 let final = isHalf ? (starI - 1) : (starI);
                 hoveredRating = final;
+                console.log(final);
                 setStars(hoveredRatingStars, final);
             }
         });
