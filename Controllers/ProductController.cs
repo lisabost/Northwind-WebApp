@@ -52,7 +52,6 @@ namespace Northwind.Controllers
         {
             string email = User.Identity.Name;
             review.ProductId = id;
-            Console.WriteLine(HasPurchased(id, email));
             // Error on un-purchased item!
             if (HasPurchased(id, email))
             {
@@ -68,11 +67,12 @@ namespace Northwind.Controllers
                         _northwindContext.AddReview(review);
                         return RedirectToAction("Products", "Product", review.ProductId);
                     }
+                } else {
+                    ModelState.AddModelError("", "Model State invalid!");                 
                 }
             } else {
                 ModelState.AddModelError("", "You have not purched this product!");
             }
-
             return View();
         }
 

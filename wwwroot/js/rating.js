@@ -10,9 +10,7 @@
 })
 
 $(document).ready(() => {
-
     init();
-
     let mouse = { x: 0, y: 0 }
 
     let intervalId, hoveredRatingStars, hoveredRating, savedRating;
@@ -40,17 +38,14 @@ $(document).ready(() => {
         console.log(hoveredRatingStars.data('rating'));
         hoveredRatingStars.children().each(function() {
             if(this.matches(':hover')) {
-                // Get hovered variables
                 let $star = $(this);
                 let rect = this.getBoundingClientRect();
                 let starI = $star.data('value');
 
-                // Mouse is over star, check for full or half
                 let starWidth = rect.right - rect.left;
                 let isHalf = false;
                 if(rect.left - hoverPadding < mouse.x && mouse.x <= rect.left + starWidth/2 - hoverPadding) isHalf = true;
 
-                // Calc final value
                 let final = isHalf ? (starI - 1) : (starI);
                 hoveredRating = final;
                 setStars(hoveredRatingStars, final);
@@ -72,7 +67,6 @@ $(document).ready(() => {
 
 });
 
-// Receives rating 1-10, converts to 1-5 and applys classes to review-stars el
 function setStars(el, rating) {
     if(rating === 0) return;
     let adj = rating / 2;
@@ -94,7 +88,6 @@ function setStars(el, rating) {
             i.removeClass();
             i.addClass('far fa-star');
         }
-        // py-2 px-1 *Removed
         i.addClass('rate-popover');
     });
 }
