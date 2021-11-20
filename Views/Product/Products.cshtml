@@ -65,20 +65,33 @@
                             setStars($(`#review-${product.productId}`), product.averageRating);
                         
                         }
+                        hideSpinner();
                     }
                 },
                 error: function (jqXHR, status, err) {
                     console.log("Error while getting products: " + status, err);
+                    hideSpinner();
                 }
             });
         }
     });
+
+    function hideSpinner() {
+        let spinner = $('#loading');
+        spinner.removeClass('d-flex');
+        spinner.addClass('d-none');
+    }
 </script>
 }
 
 
 <div class="Container">
     <h2>Products</h2>
+    <div id="loading" class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
     <div id="products" class="row">
         @* Product Cards Injected *@
     </div>
