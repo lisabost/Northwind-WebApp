@@ -1,10 +1,9 @@
 using System;
-using System.Threading.Tasks;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Northwind.Models;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Northwind.Controllers
 {
@@ -18,11 +17,14 @@ namespace Northwind.Controllers
         public IActionResult Discount() => View(_northwindContext.Discounts);
 
         [HttpGet]
-        public IActionResult ProductDetail(int id) => View(new ProductDetailViewModel
-        {
-            Product = _northwindContext.Products.Where(p => p.ProductId == id).FirstOrDefault(),
-            Reviews = _northwindContext.Reviews.Where(r => r.ProductId == id)
-        });
+        public IActionResult ProductDetail(int id) {
+            IEnumerable<Review> reviews = _northwindContext.Reviews.Where(r => r.ProductId == id);
+            return View(new ProductDetailViewModel{
+                Product = _northwindContext.Products.Where(p => p.ProductId == id).FirstOrDefault(),
+                Reviews = reviews,
+                AverageRating = APIController.AvgRating(reviews)
+            });
+        }
 
         public IActionResult Index(int id)
         {
@@ -35,16 +37,7 @@ namespace Northwind.Controllers
         [HttpGet]
         public IActionResult Products()
         {
-            List<ProductDetailViewModel> viewModels = new List<ProductDetailViewModel>();
-            foreach (var product in _northwindContext.Products)
-            {
-                viewModels.Add(new ProductDetailViewModel
-                {
-                    Product = product,
-                    Reviews = _northwindContext.Reviews.Where(r => r.ProductId == product.ProductId)
-                });
-            }
-            return View(viewModels);
+            return View();
         }
 
         [HttpPost, ValidateAntiForgeryToken, Authorize]

@@ -15,7 +15,15 @@ namespace Northwind.Controllers
 
         [HttpGet, Route("api/product")]
         // returns all products
-        public IEnumerable<Product> Get() => _northwindContext.Products.OrderBy(p => p.ProductName);
+        public IEnumerable<ProductsJSON> Get() {
+            return _northwindContext.Products.Select(p => new ProductsJSON{
+                ProductId = p.ProductId,
+                AverageRating = AvgRating(p.Reviews),
+                RatingCount = p.Reviews.Count,
+                ProductName = p.ProductName,
+                UnitPrice = p.UnitPrice
+            });
+        } 
 
         [HttpGet, Route("api/product/{id}")]
         // returns specific product by specifying the id of the product
@@ -48,5 +56,21 @@ namespace Northwind.Controllers
         [HttpPost, Route("api/addtocart")]
         // adds a row to the cartitem table
         public CartItem Post([FromBody] CartItemJSON cartItem) => _northwindContext.AddToCart(cartItem);
+
+        public static int AvgRating(IEnumerable<Review> Reviews)
+        {
+            int total = 0;
+            int amt = 0;
+            foreach (Review r in Reviews)
+            {
+                total += r.Rating;
+                amt++;
+            }
+            if(amt == 0) {
+                return 0;
+            }
+            int avg = total / amt;
+            return avg;
+        }
     }
 }

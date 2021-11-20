@@ -8,21 +8,7 @@ namespace Northwind.Models
         public Review Review {get; set; }
         public IEnumerable<Review> Reviews { get; set; }
 
-        public int AvgRating()
-        {
-            int total = 0;
-            int amt = 0;
-            foreach (Review r in Reviews)
-            {
-                total += r.Rating;
-                amt++;
-            }
-            if(amt == 0) {
-                return 0;
-            }
-            int avg = total / amt;
-            return avg;
-        }
+        public int AverageRating { get; set; }
         
     }
 }

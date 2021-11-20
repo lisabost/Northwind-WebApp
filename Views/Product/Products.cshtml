@@ -1,5 +1,4 @@
-@using Northwind.Models
-@model IEnumerable<ProductDetailViewModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <style>
     .card {
@@ -17,39 +16,72 @@
     }
 </style>
 
+@section scripts {
+<script>
+    $(() => {
+        getProducts();
+        function getProducts() {
+            $.getJSON({
+                url: `../../api/product/`,
+                success: function (res, status, jqXhr) {
+                    let output = "Error grabbing products...";
+                    let products_container = $('#products');
+                    
+                    if (res.length == 0) {
+                        output = `
+                            <div class="col py-2">
+                                <div class="card mx-auto" style="width: 18rem;">
+                                    <div class="card-body">
+                                        There was a problem loading the products...
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        products_container.html(output);
+                    } else {
+                        for (let i = 0; i < res.length; i++) {
+                            let product = res[i];
+                            output = `
+                                <div class="col py-2">
+                                    <div class="card mx-auto" style="width: 18rem;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${product.productName}</h5>
+                                            <h6 class="">$${product.unitPrice}</h6>
+                                            <span style="" class="review-stars" id="review-${product.productId}" data-rating="${product.averageRating}" data-interactive="false">
+                                                <i class="far fa-star rate-popover" data-value="2"></i>
+                                                <i class="far fa-star rate-popover" data-value="4"></i>
+                                                <i class="far fa-star rate-popover" data-value="6"></i>
+                                                <i class="far fa-star rate-popover" data-value="8"></i>
+                                                <i class="far fa-star rate-popover" data-value="10"></i>
+                                            </span>
+                                            <span>
+                                                (${product.ratingCount})
+                                            </span>
+                                            <a asp-action="ProductDetail" asp-controller="Product" asp-route-id="${product.productId}" class="stretched-link"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                            products_container.append(output);
+
+                            setStars($(`#review-${product.productId}`), product.averageRating);
+                        
+                        }
+                    }
+                },
+                error: function (jqXHR, status, err) {
+                    console.log("Error while getting products: " + status, err);
+                }
+            });
+        }
+    });
+</script>
+}
+
+
 <div class="Container">
     <h2>Products</h2>
-    @if (Model.Any())
-    {
-        <div class="row">
-            @foreach (ProductDetailViewModel i in Model)
-            {
-                <div class="col py-2">
-                    <div class="card mx-auto" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">@i.Product.ProductName</h5>
-                            <h6 class="">@i.Product.UnitPrice.ToString("c2")</h6>
-                            <span style="" class="review-stars" id="review-@i.Product.ProductId" data-rating="@i.AvgRating()" data-interactive="false">
-                                <i class="far fa-star rate-popover" data-value="2"></i>
-                                <i class="far fa-star rate-popover" data-value="4"></i>
-                                <i class="far fa-star rate-popover" data-value="6"></i>
-                                <i class="far fa-star rate-popover" data-value="8"></i>
-                                <i class="far fa-star rate-popover" data-value="10"></i>
-                            </span>
-                            <span>
-                                (@i.Reviews.Count())
-                            </span>
-                            <a asp-action="ProductDetail" asp-controller="Product" asp-route-id="@i.Product.ProductId"
-                        class="stretched-link"></a>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    }
-    else
-    {
-        <h3>No Products Available.</h3>
-    }
-
+    <div id="products" class="row">
+        @* Product Cards Injected *@
+    </div>
 </div>
