@@ -1,3 +1,3 @@
 <h1>PROJECT NOTES</h1>
 
-I'm working on fixing the rating system so its a bit broke right now. Ill have it done soon. But just to note, im trying to include half stars now so our new reviews will be on a scale from 1-10 since we can only store integers in the database and it would be a whole thing to get our migrations setup. - Jeff
+I've overhauled the rating system to include half stars so our rating scale is 1-10 now. Also, our AddReview Post method only works if the comment is populated and the user has bought the item. Otherwise, the request fails and doesnt display any error messages. - Jeff
