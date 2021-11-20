@@ -66,7 +66,7 @@ namespace Northwind.Controllers
             } else {
                 ModelState.AddModelError("", "You have not purched this product!");
             }
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
         public Boolean HasPurchased(int productId, string email)
