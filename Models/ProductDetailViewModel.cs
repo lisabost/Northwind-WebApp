@@ -8,6 +8,5 @@ namespace Northwind.Models
         public Review Review {get; set; }
         public IEnumerable<Review> Reviews { get; set; }
         public int AverageRating { get; set; }
-        
     }
 }
