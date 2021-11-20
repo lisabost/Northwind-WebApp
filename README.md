@@ -1,3 +1,3 @@
 <h1>PROJECT NOTES</h1>
 
-I've overhauled the rating system to include half stars so our rating scale is 1-10 now. Also, our AddReview Post method only works if the comment is populated and the user has bought the item. Otherwise, the request fails and doesnt display any error messages. - Jeff
+I updated the rating system to include half stars so our ratings are now 1 - 10. I also am trying to speed up the load time for the Products page by using the API instead, the links to specific ProductDetails page's are broken right now but they still work and can be navigated to by doing /Product/ProductDetails/{ProductId}, ill have that fixed soon! - Jeff
