@@ -89,7 +89,7 @@
 
     <div class="">
         <h1 id="product-id" class="d-inline-block" data-id="@Model.Product.ProductId">@Model.Product.ProductName</h1>
-        <h3 class="float-right">$@Math.Round(Model.Product.UnitPrice, 2)</h3>
+        <h3 class="float-right">@Math.Round(Model.Product.UnitPrice, 2).ToString("C")</h3>
     </div>
 
     <hr>

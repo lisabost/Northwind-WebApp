@@ -17,6 +17,10 @@
 @section scripts {
 <script>
     $(() => {
+        const formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD'
+        });
         getProducts();
         function getProducts() {
             $.getJSON({
@@ -44,7 +48,7 @@
                                     <div class="card mx-auto" style="width: 18rem;">
                                         <div class="card-body">
                                             <h5 class="card-title">${product.productName}</h5>
-                                            <h6 class="">$${product.unitPrice}</h6>
+                                            <h6 class="">${formatter.format(product.unitPrice)}</h6>
                                             <span style="" class="review-stars" id="review-${product.productId}" data-rating="${product.averageRating}" data-interactive="false">
                                                 <i class="far fa-star rate-popover" data-value="2"></i>
                                                 <i class="far fa-star rate-popover" data-value="4"></i>
