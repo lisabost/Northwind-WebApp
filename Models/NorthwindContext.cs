@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
 namespace Northwind.Models
@@ -37,7 +38,7 @@ namespace Northwind.Models
         }
 
         //create a review
-        public Review AddReview(ReviewJSON reviewJSON)
+        public void AddReview(ReviewJSON reviewJSON)
         {
             int CustomerId = Customers.FirstOrDefault(c => c.Email == reviewJSON.Name).CustomerId;
             int ProductId = reviewJSON.ProductId;
@@ -50,7 +51,6 @@ namespace Northwind.Models
             };
             Reviews.Add(review);
             this.SaveChanges();
-            return review;
         }
 
         //add items selected to the CartItems table

@@ -59,7 +59,10 @@ namespace Northwind.Controllers
 
         [HttpPost, Route("api/addReview")]
         // adds a row to the cartitem table
-        public Review AddReview([FromBody] ReviewJSON review) => _northwindContext.AddReview(review);
+        public IActionResult AddReview([FromBody] ReviewJSON review) {
+            _northwindContext.AddReview(review);
+            return NoContent();
+        } 
 
         public static int AvgRating(IEnumerable<Review> Reviews)
         {

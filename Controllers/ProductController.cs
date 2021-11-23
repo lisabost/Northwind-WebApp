@@ -22,7 +22,8 @@ namespace Northwind.Controllers
             return View(new ProductDetailViewModel{
                 Product = _northwindContext.Products.Where(p => p.ProductId == id).FirstOrDefault(),
                 Reviews = reviews,
-                AverageRating = APIController.AvgRating(reviews)
+                AverageRating = APIController.AvgRating(reviews),
+                hasPurchased = HasPurchased(id, User.Identity.Name)
             });
         }
 
@@ -38,6 +39,11 @@ namespace Northwind.Controllers
         public IActionResult Products()
         {
             return View();
+        }
+
+        public Boolean HasPurchased(int productId, string email)
+        {
+            return _northwindContext.OrderDetails.Where(od => od.ProductId == productId).Any(o => o.Order.Customer.Email == email);
         }
 
         // [HttpPost, ValidateAntiForgeryToken, Authorize]
@@ -68,11 +74,5 @@ namespace Northwind.Controllers
         //     }
         //     return RedirectToAction("Index", "Home");
         // }
-
-        // public Boolean HasPurchased(int productId, string email)
-        // {
-        //     return _northwindContext.OrderDetails.Where(od => od.ProductId == productId).Any(o => o.Order.Customer.Email == email);
-        // }
-
     }
 }

@@ -78,13 +78,13 @@ $(function () {
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 // log the error to the console
-                toast("Error", "Please try again later.");
+                toast("cart_toast" ,"Error", "Please try again later.");
             }
         });
     });
-    function toast(header, message) {
-        $('#toast_header').html(header);
-        $('#toast_body').html(message);
-        $('#cart_toast').toast({ delay: 2500 }).toast('show');
-    }
+    // function toast(header, message) {
+    //     $('#toast_header').html(header);
+    //     $('#toast_body').html(message);
+    //     $('#cart_toast').toast({ delay: 2500 }).toast('show');
+    // }
 });
