@@ -107,3 +107,13 @@ a.navbar-brand {
   #product_rows tr {
     cursor: pointer;
   }
+
+/* Animated Accordian Chevron */
+
+  .animated-icon {
+    transition: 0.4s;
+  }
+
+  .rotate {
+    transform: rotate(180deg);
+  }

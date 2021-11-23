@@ -64,12 +64,10 @@
 
 $('#reviews-header-btn').click(function() {
     let chevron = $('#chevron');
-    if(chevron.hasClass('fa-chevron-up')) {
-        chevron.removeClass('fa-chevron-up');
-        chevron.addClass('fa-chevron-down');
+    if(chevron.hasClass('rotate')) {
+        chevron.removeClass('rotate');
     } else {
-        chevron.removeClass('fa-chevron-down');
-        chevron.addClass('fa-chevron-up');
+        chevron.addClass('rotate');
     }
 });
 
