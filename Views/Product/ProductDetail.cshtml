@@ -67,7 +67,7 @@
                                     </div>
                                 </div>
                             `;
-                            review_container.append(output);
+                            review_container.prepend(output);
                             setStars($(`#review-${review.ratingId}`), review.rating);
                         }
                     }
