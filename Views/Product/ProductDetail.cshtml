@@ -116,6 +116,7 @@
                         <div class="modal-body">
                             <form method="post" asp-action="AddReview">
                                 <div asp-validation-summary="All" style="color:red;"></div>
+                                @* Does not display Model Validation Erros *@
                                 <input class="d-none" id="rating-input" value="10" asp-for="@Model.Review.Rating">
                                 <div class="form-group">
                                     <label>Rating</label><br>
