@@ -35,7 +35,7 @@ $(function () {
     });
 
     // delegated event listener
-    $('#product_rows').on('click', 'tr', function(){
+    $('#product_rows').on('click', function(){
         // make sure a customer is logged in
         if ($('#User').data('customer').toLowerCase() == "true"){
             $('#ProductId').html($(this).data('id'));
@@ -82,9 +82,4 @@ $(function () {
             }
         });
     });
-    // function toast(header, message) {
-    //     $('#toast_header').html(header);
-    //     $('#toast_body').html(message);
-    //     $('#cart_toast').toast({ delay: 2500 }).toast('show');
-    // }
 });

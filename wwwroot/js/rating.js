@@ -125,7 +125,6 @@
 
     $('#addReview').on('click', function (e) {
         e.preventDefault();
-        console.log("Add to Card");
         $('#add-review-modal').modal('hide');
         $.ajax({
             headers: { "Content-Type": "application/json" },
@@ -200,3 +199,56 @@ function toast(id, header, message) {
     $('#toast_body').html(message);
     $(`#${id}`).toast({ delay: 2500 }).toast('show');
 }
+
+// ADD TO CART MODAL
+
+//on click to bring up cart modal
+$('#products').on('click', 'button', function () {
+    if($(this).attr('id') === "add-to-cart") {
+        // make sure a customer is logged in
+        if ($('#User').data('customer') == "True") {
+            $('#ProductId').html($(this).data('productid'));
+            $('#ProductName').html($(this).data('productname'));
+            $('#UnitPrice').html($(this).data('unitprice'));
+            // calculate and display total in modal
+            $('#Quantity').change();
+            $('#cartModal').modal();
+        } else {
+            toast("Access Denied", "You must be signed in as a customer to access the cart.");
+        }
+    }
+});
+
+// update total when cart quantity is changed
+$('#Quantity').change(function () {
+    var total = parseInt($(this).val()) * parseFloat($('#UnitPrice').html());
+    $('#Total').html(numberWithCommas(total.toFixed(2)));
+});
+
+// function to display commas in number
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+//Using product id, customer id, and quantity call API method using AJAX
+$('#addToCart').on('click', function () {
+    $('#cartModal').modal('hide');
+    $.ajax({
+        headers: { "Content-Type": "application/json" },
+        url: "../../api/addtocart",
+        type: 'post',
+        data: JSON.stringify({
+            "id": Number($('#ProductId').html()),
+            "email": $('#User').data('email'),
+            "qty": Number($('#Quantity').val())
+        }),
+        success: function (response, textStatus, jqXhr) {
+            // success
+            toast("cart_toast", "Product Added", response.product.productName + " successfully added to cart.");
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            // log the error to the console
+            toast("cart_toast" ,"Error", "Please try again later.");
+        }
+    });
+});
