@@ -2,118 +2,118 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand {
-    white-space: normal;
-    text-align: center;
-    word-break: break-all;
-  }
-  
-  /* Provide sufficient contrast against white background */
-  a {
-    color: #0366d6;
-  }
-  
-  .btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
-  }
-  
-  .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
-  }
-  
-  /* Sticky footer styles
-  -------------------------------------------------- */
-  html {
-    font-size: 14px;
-  }
-  @media (min-width: 768px) {
-    html {
-      font-size: 16px;
-    }
-  }
-  
-  .border-top {
-    border-top: 1px solid #e5e5e5;
-  }
-  .border-bottom {
-    border-bottom: 1px solid #e5e5e5;
-  }
-  
-  .box-shadow {
-    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-  }
-  
-  button.accept-policy {
-    font-size: 1rem;
-    line-height: inherit;
-  }
-  
-  /* Sticky footer styles
-  -------------------------------------------------- */
-  html {
-    position: relative;
-    min-height: 100%;
-  }
-  
-  body {
-    /* Margin bottom by footer height */
-    margin-bottom: 60px;
-    font-family: 'Oswald', sans-serif;
-  }
-
-  .toast {
-    position: absolute;
-    top: 65px;
-    right: 10px;
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
 }
 
-  .footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    white-space: nowrap;
-    line-height: 60px; /* Vertically center the text there */
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
   }
-  
-    /* Review Component Styles */
+}
 
-    .review-stars {
-      padding: 0;
-      margin: 0;
-      cursor: pointer;
-    }
-    
-    .review-stars i {
-        padding: 0;
-        margin: 0;
-        border: none;
-        width: 18px;
-    }
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
 
-    #review-new i {
-      font-size: 20px;
-    }
-  
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
 
-    
-    /* Discontinued Product Style */
-    .discontinued {
-      opacity: .5;
-    }
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
 
-  #product_rows tr {
-    cursor: pointer;
-  }
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  font-family: 'Oswald', sans-serif;
+}
+
+.toast {
+  position: absolute;
+  top: 65px;
+  right: 10px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+/* Review Component Styles */
+
+.review-stars {
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.review-stars i {
+    padding: 0;
+    margin: 0;
+    border: none;
+    width: 18px;
+}
+
+#review-new i {
+  font-size: 20px;
+}
+
+
+
+/* Discontinued Product Style */
+.discontinued {
+  opacity: .5;
+}
+
+#product_rows tr {
+cursor: pointer;
+}
 
 /* Animated Accordian Chevron */
 
-  .animated-icon {
-    transition: 0.4s;
-  }
+.animated-icon {
+  transition: 0.4s;
+}
 
-  .rotate {
-    transform: rotate(180deg);
-  }
+.rotate {
+  transform: rotate(180deg);
+}

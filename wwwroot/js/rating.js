@@ -19,12 +19,14 @@
     });
 
     $('.review-stars').click(function () {
-        if(isInteractive(hoveredRatingStars)) savedRating = hoveredRating;
+        if(isInteractive(hoveredRatingStars)) {
+            savedRating = hoveredRating;
+            updateInputValue('rating-input', savedRating);
+        }
     });
 
     let hoverPadding = 1;
     function interactive() {
-        console.log(hoveredRatingStars.data('rating'));
         hoveredRatingStars.children().each(function() {
             if(this.matches(':hover')) {
                 let $star = $(this);
@@ -42,6 +44,10 @@
         });
     }
 
+    function updateInputValue(id, val) {
+        document.getElementById(id).value = val;
+    }
+
     function isInteractive(el) {
         return el.data('interactive') ? true : false;
     }
@@ -51,6 +57,7 @@
             let rating = $(this).data('rating');
             setStars($(this), rating);
         });
+        
     }
 
     addEventListener('mousemove', (e) => {
@@ -95,4 +102,3 @@ function setStars(el, rating) {
         i.addClass('rate-popover');
     });
 }
-

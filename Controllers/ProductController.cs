@@ -43,6 +43,7 @@ namespace Northwind.Controllers
         [HttpPost, ValidateAntiForgeryToken, Authorize]
         public IActionResult AddReview(int id, Review review)
         {
+            Console.WriteLine(review.Rating);
             string email = User.Identity.Name;
             review.ProductId = id;
             // Error on un-purchased item!
