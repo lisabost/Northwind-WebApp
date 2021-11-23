@@ -12,5 +12,7 @@ namespace Northwind.Models
         public string Comment { get; set; }
 
         public string Name { get; set; }
+
+        public int ProductId { get; set; }
     }
 }

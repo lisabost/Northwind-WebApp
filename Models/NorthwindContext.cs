@@ -37,10 +37,20 @@ namespace Northwind.Models
         }
 
         //create a review
-        public void AddReview(Review review)
+        public Review AddReview(ReviewJSON reviewJSON)
         {
-            this.Add(review);
+            int CustomerId = Customers.FirstOrDefault(c => c.Email == reviewJSON.Name).CustomerId;
+            int ProductId = reviewJSON.ProductId;
+
+            Review review = new Review(){
+                Rating = reviewJSON.Rating,
+                Comment = reviewJSON.Comment,
+                CustomerId = CustomerId,
+                ProductId = ProductId,
+            };
+            Reviews.Add(review);
             this.SaveChanges();
+            return review;
         }
 
         //add items selected to the CartItems table

@@ -102,3 +102,34 @@ function setStars(el, rating) {
         i.addClass('rate-popover');
     });
 }
+
+$('#addReview').on('click', function (e) {
+    e.preventDefault();
+    console.log("Add to Card");
+    $('#add-review-modal').modal('hide');
+    $.ajax({
+        headers: { "Content-Type": "application/json" },
+        url: "../../api/addReview",
+        type: 'post',
+        data: JSON.stringify({
+            "ProductId": Number($('#addReviewButton').data('id')),
+            "Name": $('#addReviewButton').data('name'),
+            "Rating": Number($('#rating-input').val()),
+            "Comment": $("#comment").val() 
+        }),
+        success: function (response, textStatus, jqXhr) {
+            // success
+            toast("Product Added", response.product.productName + " successfully added to cart.");
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            // log the error to the console
+            toast("Error", "Please try again later.");
+        }
+    });
+});
+
+function toast(header, message) {
+    $('#toast_header').html(header);
+    $('#toast_body').html(message);
+    $('#cart_toast').toast({ delay: 2500 }).toast('show');
+}
