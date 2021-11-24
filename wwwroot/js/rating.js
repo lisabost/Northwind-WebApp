@@ -138,12 +138,12 @@
             }),
             success: function (response, textStatus, jqXhr) {
                 // success
-                toast("review_toast", "Review Added", "Thank you for your review of " + document.getElementById('product-id').innerText + "!");
+                toast("Review Added", "Thank you for your review of " + document.getElementById('product-id').innerText + "!");
                 getReviews();
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 // log the error to the console
-                toast("review_toast", "Error", "Please try again later.");
+                toast("Error", "Please try again later.");
             }
         });
     });
@@ -190,14 +190,39 @@ $('#addReviewButton').on('click', function () {
     if ($('#hasPurchased').data('haspurchased').toUpperCase() === 'TRUE') {
         $('#add-review-modal').modal();
     } else {
-        toast("review_toast", "Error", "Purchase Item to leave review!");
+        toast("Error", "Purchase Item to leave review!");
     }
 });
 
-function toast(id, header, message) {
-    $('#toast_header').html(header);
-    $('#toast_body').html(message);
-    $(`#${id}`).toast({ delay: 2500 }).toast('show');
+// Displays toast on page
+let initToast = false;
+let index = 0;
+let toastIds = [];
+function toast(header, message) {
+    if(!initToast) { 
+        $('body').append(`<div id="toast-component" style="position: fixed;top: 10px;right: 10px; z-index: 5;"></div>`) 
+        initToast = true;
+    }
+    let output = `
+    <div id="toast-${index}" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong id="2">${header}</strong>
+        </div>
+        <div class="toast-body" id="toast_body">
+            ${message}
+        </div>
+    </div>
+    `
+    $('#toast-component').append(output);
+    $(`#toast-${index}`).toast({ delay: 9000 }).toast('show');
+    toastIds.push(index);
+    let timeoutId = setTimeout(() => {
+        let id = `toast-${toastIds[0]}`;
+        console.log(id);
+        document.getElementById(id).remove();
+        toastIds.shift();
+    }, 10000);
+    index++;
 }
 
 // ADD TO CART MODAL
@@ -244,11 +269,11 @@ $('#addToCart').on('click', function () {
         }),
         success: function (response, textStatus, jqXhr) {
             // success
-            toast("cart_toast", "Product Added", response.product.productName + " successfully added to cart.");
+            toast("Product Added", response.product.productName + " successfully added to cart.");
         },
         error: function (jqXHR, textStatus, errorThrown) {
             // log the error to the console
-            toast("cart_toast" ,"Error", "Please try again later.");
+            toast("Error", "Please try again later.");
         }
     });
 });
