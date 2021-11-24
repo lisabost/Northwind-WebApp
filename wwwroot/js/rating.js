@@ -169,6 +169,10 @@ function resetAddReviewModal() {
     setStars($('#review-new'), 10);
 }
 
+function resetCartModal() {
+    $('#Quantity').val(1);
+}
+
 function setStars(el, rating) {
     if (rating === 0) return;
     let adj = rating / 2;
@@ -286,6 +290,7 @@ $('#addToCart').on('click', function () {
         success: function (response, textStatus, jqXhr) {
             // success
             toast("Product Added", response.product.productName + " successfully added to cart.");
+            resetCartModal();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             // log the error to the console
