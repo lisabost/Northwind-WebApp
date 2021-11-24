@@ -133,7 +133,6 @@ cursor: pointer;
 }
 
 .progress-bar {
-  background-color: lightskyblue;
   animation: progressbar-countdown;
   animation-duration: 9s;
   animation-iteration-count: 1;

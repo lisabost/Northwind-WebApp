@@ -143,7 +143,7 @@
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 // log the error to the console
-                toast("Error", "Please try again later.");
+                toast("Error", "Please try again later.", 'red');
             }
         });
     });
@@ -190,7 +190,7 @@ $('#addReviewButton').on('click', function () {
     if ($('#hasPurchased').data('haspurchased').toUpperCase() === 'TRUE') {
         $('#add-review-modal').modal();
     } else {
-        toast("Error", "Purchase Item to leave review!");
+        toast("Error", "Purchase Item to leave review!", 'red');
     }
 });
 
@@ -199,7 +199,7 @@ let initToast = false;
 let index = 0;
 let toastIds = [];
 const Toast_Delay = 10000;
-function toast(header, message) {
+function toast(header, message, color='#87CEFA') {
     if(!initToast) { 
         $('body').append(`<div id="toast-component" style="position: fixed;top: 10px;right: 10px; z-index: 5;"></div>`) 
         initToast = true;
@@ -214,7 +214,7 @@ function toast(header, message) {
         </div>
 
         <div class="progress" style="height: 4px;">
-            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar" style="background-color: ${color}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
 
         <div class="toast-body h6" id="toast_body">
@@ -247,7 +247,7 @@ $('#products').on('click', 'button', function () {
             $('#Quantity').change();
             $('#cartModal').modal();
         } else {
-            toast("Access Denied", "You must be signed in as a customer to access the cart.");
+            toast("Access Denied", "You must be signed in as a customer to access the cart.", 'red');
         }
     }
 });
@@ -281,7 +281,7 @@ $('#addToCart').on('click', function () {
         },
         error: function (jqXHR, textStatus, errorThrown) {
             // log the error to the console
-            toast("Error", "Please try again later.");
+            toast("Error", "Please try again later.", 'red');
         }
     });
 });
