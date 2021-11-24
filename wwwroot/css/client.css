@@ -126,3 +126,26 @@ cursor: pointer;
 .add-to-cart-button:hover i {
   color: #1B6EC2;
 }
+
+/* Progress Bar Animations */
+.progress {
+  border-radius: 0;
+}
+
+.progress-bar {
+  background-color: lightskyblue;
+  animation: progressbar-countdown;
+  animation-duration: 9s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+@keyframes progressbar-countdown {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+  
+}
