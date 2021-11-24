@@ -140,6 +140,7 @@
                 // success
                 toast("Review Added", "Thank you for your review of " + document.getElementById('product-id').innerText + "!");
                 getReviews();
+                resetAddReviewModal();
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 // log the error to the console
@@ -160,6 +161,13 @@ $('#reviews-header-btn').click(function () {
         chevron.addClass('rotate');
     }
 });
+
+function resetAddReviewModal() {
+    document.getElementById('comment').value = "";
+    $('#review-new').data('rating', '10');
+    $('#rating-input').val('10');
+    setStars($('#review-new'), 10);
+}
 
 function setStars(el, rating) {
     if (rating === 0) return;
