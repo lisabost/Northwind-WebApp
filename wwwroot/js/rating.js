@@ -217,18 +217,16 @@ function toast(header, message, color='#1B6EC2') {
         initToast = true;
     }
     let output = `
-    <div id="toast-${index}" class="shadow-lg toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div id="toast-${index}" class="shadow-lg toast" role="alert" aria-live="assertive" aria-atomic="true" style="border: #A9A9A9 solid 1px">
         <div class="toast-header">
-            <strong class="h5 mr-auto">${header}</strong>
+            <strong class="h5 mr-auto" style="color: black;">${header}</strong>
             <button type="button" class="close float-right" data-dismiss="toast" aria-label="Close">
                 &times;
             </button>
         </div>
-
         <div class="progress" style="height: 4px;">
             <div class="progress-bar" style="background-color: ${color}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
-
         <div class="toast-body h6" id="toast_body">
             ${message}
         </div>
