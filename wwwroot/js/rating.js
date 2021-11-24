@@ -67,7 +67,7 @@
 
     function getReviews() {
         let review_container = $('#reviews');
-        review_container.html();
+        review_container.html("");
         let productId = $('#product-id').data('id');
         $.getJSON({
             url: `../../api/product/${productId}/reviews`,
