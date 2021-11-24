@@ -199,7 +199,7 @@ let initToast = false;
 let index = 0;
 let toastIds = [];
 const Toast_Delay = 10000;
-function toast(header, message, color='#87CEFA') {
+function toast(header, message, color='#1B6EC2') {
     if(!initToast) { 
         $('body').append(`<div id="toast-component" style="position: fixed;top: 10px;right: 10px; z-index: 5;"></div>`) 
         initToast = true;
