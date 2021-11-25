@@ -232,7 +232,7 @@ function toast(header, message, color='#1B6EC2') {
         </div>
     </div>
     `
-    $('#toast-component').append(output);
+    $('#toast-component').prepend(output);
     $(`#toast-${index}`).toast({ delay: 9000 }).toast('show');
     toastIds.push(index);
     let timeoutId = setTimeout(() => {
