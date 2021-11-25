@@ -213,7 +213,7 @@ let toastIds = [];
 const Toast_Delay = 10000;
 function toast(header, message, color='#1B6EC2') {
     if(!initToast) { 
-        $('body').append(`<div id="toast-component" style="position: fixed;top: 10px;right: 10px; z-index: 5;"></div>`) 
+        $('body').append(`<div id="toast-component" style="position: absolute;top: 10px;right: 10px; z-index: 5; width: 300px;"></div>`) 
         initToast = true;
     }
     let output = `
