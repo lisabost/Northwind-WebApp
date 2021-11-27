@@ -73,8 +73,6 @@
             url: `../../api/product/${productId}/reviews`,
             success: function (res, status, jqXhr) {
                 let output = "Error processing reviews...";
-
-
                 if (res.length == 0) {
                     output = `
                         <div class="card">
@@ -105,7 +103,7 @@
                                             <i class="far fa-star rate-popover" data-value="10"></i>
                                         </span>
                                         <span>&nbsp;|&nbsp;${review.name}</span>
-                                        <small class="float-right">${randomFormattedDate()}</small>
+                                        <small class="float-right">${formattedDateNow()}</small>
                                     </div>
                                     <p class="card-text">
                                         ${review.comment}
@@ -288,7 +286,8 @@ $('#addToCart').on('click', function () {
         }),
         success: function (response, textStatus, jqXhr) {
             // success
-            toast("Product Added", response.product.productName + " successfully added to cart.");
+            console.log(response);
+            toast("Thanks, " + response.customer.companyName + "!", response.product.productName + "was successfully added to your cart. | Cart QTY: " + response.quantity);
             resetCartModal();
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -298,7 +297,7 @@ $('#addToCart').on('click', function () {
     });
 });
 
-function randomFormattedDate() {
+function formattedDateNow() {
     let x = new Date();
     return `${x.getMonth()}/${x.getDay()}/${x.getFullYear()}`;
 }
