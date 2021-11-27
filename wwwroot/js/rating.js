@@ -105,6 +105,7 @@
                                             <i class="far fa-star rate-popover" data-value="10"></i>
                                         </span>
                                         <span>&nbsp;|&nbsp;${review.name}</span>
+                                        <small class="float-right">${randomFormattedDate()}</small>
                                     </div>
                                     <p class="card-text">
                                         ${review.comment}
@@ -296,3 +297,8 @@ $('#addToCart').on('click', function () {
         }
     });
 });
+
+function randomFormattedDate() {
+    let x = new Date();
+    return `${x.getMonth()}/${x.getDay()}/${x.getFullYear()}`;
+}
