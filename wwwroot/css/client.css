@@ -130,13 +130,15 @@ cursor: pointer;
   animation-name: toast;
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
-  animation-duration: 0.2s;
+  animation-duration: 0.25s;
 }
 @keyframes toast {
   0% {
+    right: -250px;
     opacity: 0;
   }
   100% {
+    right: 10px;
     opacity: 1;
   }
 }

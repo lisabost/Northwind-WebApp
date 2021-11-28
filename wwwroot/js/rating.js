@@ -210,9 +210,18 @@ let initToast = false;
 let index = 0;
 let toastIds = [];
 const Toast_Delay = 10000;
-function toast(header, message, color='#1B6EC2') {
-    if(!initToast) { 
-        $('body').append(`<div id="toast-component" style="position: fixed;top: 10px;right: 10px; z-index: 5; width: 300px;"></div>`) 
+function toast(header, message, color = '#1B6EC2') {
+    switch (color.toUpperCase()) {
+        case "RED":
+            const error = new Audio('../../media/error.wav');
+            error.play();
+            break;
+        default:
+            const toast = new Audio('../../media/default.wav');
+            toast.play();
+    }
+    if (!initToast) {
+        $('body').append(`<div id="toast-component" style="position: fixed;top: 10px;right: 10px; z-index: 5; width: 300px;"></div>`)
         initToast = true;
     }
     let output = `
@@ -246,7 +255,7 @@ function toast(header, message, color='#1B6EC2') {
 
 //on click to bring up cart modal
 $('#products').on('click', 'button', function () {
-    if($(this).attr('id') === "add-to-cart") {
+    if ($(this).attr('id') === "add-to-cart") {
         // make sure a customer is logged in
         if ($('#User').data('customer') == "True") {
             $('#ProductId').html($(this).data('productid'));

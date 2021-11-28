@@ -16,15 +16,13 @@ $(function(){
         var discount = $(this).data("code");
 
         //update spans with product name and discount code information
-        $('#productName').text(name);
-        $('#discountCode').text(discount);
-
-        $('#toast').toast({ autohide: false }).toast('show');
+        console.log("Test");
+        toast(name, "Discount Code: " + discount);
     });
 });
 
 $(document).on('keydown', function(e) {
     if (e.keyCode == 27) {
-        $('#toast').toast('dispose');
+        // Clear Toasts on Esc.
     }
 })

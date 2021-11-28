@@ -45,7 +45,7 @@ $(function () {
             $('#Quantity').change();
             $('#cartModal').modal();
         } else {
-            toast("Access Denied", "You must be signed in as a customer to access the cart.");
+            toast("Access Denied", "You must be signed in as a customer to access the cart.", 'red');
         }
     });
 
@@ -78,7 +78,7 @@ $(function () {
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 // log the error to the console
-                toast("cart_toast" ,"Error", "Please try again later.");
+                toast("Error", "Please try again later.", 'red');
             }
         });
     });
