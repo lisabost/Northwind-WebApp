@@ -17,7 +17,7 @@ $(function(){
         var discount = $(this).data("code");
 
         //update spans with product name and discount code information
-        toast(name, "Discount Code: " + discount, 'blue', true);
+        toast(name, "Discount Code: " + discount, undefined, true);
     });
 });
 
