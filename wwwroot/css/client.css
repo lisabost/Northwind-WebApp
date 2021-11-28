@@ -168,7 +168,7 @@ cursor: pointer;
 
 .progress-bar-persistant {
   width: 100%;
-  animation: progressbar-persistant 2.5s infinite;
+  animation: progressbar-persistant 1.5s infinite;
   animation-direction: alternate-reverse;
 }
 @keyframes progressbar-persistant {
