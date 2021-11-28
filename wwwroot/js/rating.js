@@ -205,7 +205,7 @@ $('#addReviewButton').on('click', function () {
     }
 });
 
-// Can add a toast to any page given a header, a message, and optionally, a color for the progress bar.
+// Creates toast on page. Requires a header, message. 
 let initToast = false;
 let index = 0;
 let toastIds = [];
