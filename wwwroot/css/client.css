@@ -149,7 +149,7 @@ cursor: pointer;
   border-radius: 0;
 }
 
-.progress-bar {
+.progress-bar-countdown {
   animation: progressbar-countdown;
   animation-duration: 9s;
   animation-iteration-count: 1;
@@ -164,4 +164,14 @@ cursor: pointer;
     width: 100%;
   }
   
+}
+
+.progress-bar-persistant {
+  width: 100%;
+  animation: progressbar-persistant 2.5s infinite;
+  animation-direction: alternate-reverse;
+}
+@keyframes progressbar-persistant {
+  0%    { opacity: 0; }
+  100%  { opacity: 1; }
 }
