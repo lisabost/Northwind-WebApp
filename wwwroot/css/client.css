@@ -128,14 +128,6 @@ cursor: pointer;
 .toast {
   animation: 1s ease 0s 1 toast;
 }
-
-/* .toast-component {
-  opacity: 1;
-  animation-name: toast;
-  animation-iteration-count: 1;
-  animation-timing-function: ease-in;
-  animation-duration: 0.25s;
-} */
 @keyframes toast {
   0% {
     transform: translateX(100%);
