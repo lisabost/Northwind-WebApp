@@ -3,7 +3,7 @@ let initToast = false;
 let index = 0;
 let toastIds = [];
 const Toast_Delay = 10000;
-function toast(header, message, color = '#1B6EC2', persitant=false) {
+function toast(header, message, color = '#1B6EC2', persitant=false, url=undefined) {
     switch (color.toUpperCase()) {
         case "RED":
             const error = new Audio('../../media/error.wav');
@@ -21,11 +21,12 @@ function toast(header, message, color = '#1B6EC2', persitant=false) {
     if(persitant) {
         animationClass = "progress-bar-persistant";
     }
+    let linkHtml = (url) ? `<a href="${url}" class="stretched-link"></a>` : '';
     let output = `
     <div id="toast-${index}" class="toast unselectable" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
             <strong class="h5 mr-auto" style="color: black;">${header}</strong>
-            <button type="button" class="close float-right" data-dismiss="toast" aria-label="Close">
+            <button type="button" style="z-index: 2; position: relative" class="close float-right" data-dismiss="toast" aria-label="Close">
                 &times;
             </button>
         </div>
@@ -36,6 +37,7 @@ function toast(header, message, color = '#1B6EC2', persitant=false) {
 
         <div class="toast-body h6" id="toast_body">
             ${message}
+            ${linkHtml}
         </div>
     </div>
     `
