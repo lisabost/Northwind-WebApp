@@ -251,7 +251,7 @@ $('#addToCart').on('click', function () {
         }),
         success: function (response, textStatus, jqXhr) {
             // success
-            toast("Thanks, " + response.customer.companyName + "!", response.product.productName + "was successfully added to your cart. | Cart QTY: " + response.quantity);
+            toast("Thanks, " + response.customer.companyName + "!", response.product.productName + " was successfully added to your cart. | Cart QTY: " + response.quantity);
             resetCartModal();
         },
         error: function (jqXHR, textStatus, errorThrown) {
