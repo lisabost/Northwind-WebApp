@@ -103,7 +103,7 @@
                                             <i class="far fa-star rate-popover" data-value="10"></i>
                                         </span>
                                         <span>&nbsp;|&nbsp;${review.name}</span>
-                                        <small class="float-right">${formattedDateNow()}</small>
+                                        <small class="float-right">${formattedDateNow(new Date())}</small>
                                     </div>
                                     <p class="card-text">
                                         ${review.comment}
@@ -259,12 +259,12 @@ $('#addToCart').on('click', function () {
     });
 });
 
-function formattedDateNow() {
-    let x = new Date();
-    let hrs24 = x.getHours();
+function formattedDateNow(dateObj) {
+    let hrs24 = dateObj.getHours();
     let isPM = (hrs24 > 12);
     let hrs12 = (isPM) ? (hrs24-12) : hrs;
-    let mins = x.getMinutes();
-    let time = (isPM) ? `${hrs12}:${mins} PM` : `${hrs12}:${mins} PM`;
-    return `${x.getMonth()+1}/${x.getDate()}/${x.getFullYear()} - ${time}`;
+    let mins = dateObj.getMinutes();
+    let minsAdj = (mins < 10) ? `0${mins}` : `${mins}`;
+    let time = (isPM) ? `${hrs12}:${minsAdj} PM` : `${hrs12}:${minsAdj} PM`;
+    return `${dateObj.getMonth()+1}/${dateObj.getDate()}/${dateObj.getFullYear()} - ${time}`;
 }
