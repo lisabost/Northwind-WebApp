@@ -147,6 +147,8 @@ cursor: pointer;
 
 .progress {
   border-radius: 0;
+  background-color: white;
+  margin: 0;
 }
 
 .progress-bar-countdown {
