@@ -14,13 +14,13 @@ $(function () {
                         + "<td class=\"text-right\">$" + response[i].unitPrice.toFixed(2) + "</td>"
                         + "<td class=\"text-right\">" + response[i].unitsInStock + "</td>"
                         + "</tr>";
-                    console.log(row);
                     $('#product_rows').append(row);
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 // log the error to the console
-                console.log("The following error occured: " + textStatus, errorThrown);
+                toast("Products Error", "There was a problem loading product information. Please try again later. | Status: " + textStatus, 'red');
+                console.error(errorThrown);
             }
         });
     }

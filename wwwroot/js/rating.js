@@ -117,7 +117,8 @@
                 }
             },
             error: function (jqXHR, status, err) {
-                console.log("Error while getting reviews: " + status, err);
+                toast("Reviews Error", "There was a problem while loading this products reviews! | Status: " + status, 'red');
+                console.error(err);
             }
         });
     }
@@ -143,7 +144,8 @@
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 // log the error to the console
-                toast("Error", "Please try again later.", 'red');
+                toast("Add Review Error", "There was a problem creating your review! Please try again later. | Status: " + textStatus, 'red');
+                console.error(err);
             }
         });
     });
