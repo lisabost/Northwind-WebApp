@@ -22,7 +22,7 @@ function toast(header, message, color = '#1B6EC2', persitant=false) {
         animationClass = "progress-bar-persistant";
     }
     let output = `
-    <div id="toast-${index}" class="shadow-lg toast" role="alert" aria-live="assertive" aria-atomic="true" style="border: #A9A9A9 solid 1px">
+    <div id="toast-${index}" class="toast unselectable" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
             <strong class="h5 mr-auto" style="color: black;">${header}</strong>
             <button type="button" class="close float-right" data-dismiss="toast" aria-label="Close">
@@ -54,3 +54,4 @@ function toast(header, message, color = '#1B6EC2', persitant=false) {
     }
     index++;
 }
+
