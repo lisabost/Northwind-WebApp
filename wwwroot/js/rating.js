@@ -259,8 +259,6 @@ $('#addToCart').on('click', function () {
     });
 });
 
-
-// 1 - 24
 function formattedDateNow(dateObj) {
     let hrs24 = dateObj.getHours();
     let isPM = (hrs24 > 12);
