@@ -260,11 +260,11 @@ $('#addToCart').on('click', function () {
 });
 
 function formattedDateNow(dateObj) {
-    let hrs24 = dateObj.getHours();
+    let hrs24 = dateObj.getHours()+1;
     let isPM = (hrs24 > 12);
-    let hrs12 = (isPM) ? (hrs24-12) : hrs;
+    let hrs12 = (isPM) ? (hrs24-12) : hrs24;
     let mins = dateObj.getMinutes();
     let minsAdj = (mins < 10) ? `0${mins}` : `${mins}`;
-    let time = (isPM) ? `${hrs12}:${minsAdj} PM` : `${hrs12}:${minsAdj} PM`;
+    let time = (isPM) ? `${hrs12}:${minsAdj} PM` : `${hrs12}:${minsAdj} AM`;
     return `${dateObj.getMonth()+1}/${dateObj.getDate()}/${dateObj.getFullYear()} - ${time}`;
 }
