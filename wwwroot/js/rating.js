@@ -261,5 +261,10 @@ $('#addToCart').on('click', function () {
 
 function formattedDateNow() {
     let x = new Date();
-    return `${x.getMonth()}/${x.getDay()}/${x.getFullYear()}`;
+    let hrs24 = x.getHours();
+    let isPM = (hrs24 > 12);
+    let hrs12 = (isPM) ? (hrs24-12) : hrs;
+    let mins = x.getMinutes();
+    let time = (isPM) ? `${hrs12}:${mins} PM` : `${hrs12}:${mins} PM`;
+    return `${x.getMonth()+1}/${x.getDate()}/${x.getFullYear()} - ${time}`;
 }
