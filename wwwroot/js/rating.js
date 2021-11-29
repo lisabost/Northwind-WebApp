@@ -145,7 +145,7 @@
             error: function (jqXHR, textStatus, errorThrown) {
                 // log the error to the console
                 toast("Add Review Error", "There was a problem creating your review! Please try again later. | Status: " + textStatus, 'red');
-                console.error(err);
+                console.error(errorThrown);
             }
         });
     });
@@ -203,7 +203,7 @@ $('#addReviewButton').on('click', function () {
     if ($('#hasPurchased').data('haspurchased').toUpperCase() === 'TRUE') {
         $('#add-review-modal').modal();
     } else {
-        toast("Error", "Purchase Item to leave review!", 'red');
+        toast("Review Error", "Purchase Item to leave review!", 'red');
     }
 });
 
@@ -256,7 +256,7 @@ $('#addToCart').on('click', function () {
         },
         error: function (jqXHR, textStatus, errorThrown) {
             // log the error to the console
-            toast("Error", "Please try again later.", 'red');
+            toast("Cart Error", "Northwind could not add the item to your cart. Have you logged in and purchased the item? If so, Please try again later.", 'red');
         }
     });
 });
