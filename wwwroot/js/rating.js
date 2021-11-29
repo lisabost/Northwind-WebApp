@@ -256,7 +256,7 @@ $('#addToCart').on('click', function () {
         },
         error: function (jqXHR, textStatus, errorThrown) {
             // log the error to the console
-            toast("Cart Error", "There was a problem added the item to your cart. Please try again later. | Status: " + textStatus, 'red');
+            toast("Cart Error", "There was a problem adding the item to your cart. Please try again later. | Status: " + textStatus, 'red');
         }
     });
 });
