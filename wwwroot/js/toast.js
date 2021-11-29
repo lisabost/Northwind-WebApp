@@ -52,5 +52,6 @@ function toast(header, message, color = '#1B6EC2', persitant=false) {
         }, Toast_Delay);
         $(`#toast-${index}`).toast({ delay: 9000 }).toast('show');
     }
+    console.log($(`#toast-${index}`));
     index++;
 }
