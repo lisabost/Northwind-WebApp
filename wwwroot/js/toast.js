@@ -21,7 +21,7 @@ function toast(header, message, color = '#1B6EC2', persitant=false, url=undefine
     if(persitant) {
         animationClass = "progress-bar-persistant";
     }
-    let linkHtml = (url) ? `<a href="${url}" class="stretched-link"></a>` : '';
+    let linkHtml = (url) ? `<a href="${url}" style="cursor: pointer;" class="stretched-link"></a>` : '';
     let output = `
     <div id="toast-${index}" class="toast unselectable" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
