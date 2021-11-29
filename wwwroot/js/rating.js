@@ -259,10 +259,12 @@ $('#addToCart').on('click', function () {
     });
 });
 
+
+// 1 - 24
 function formattedDateNow(dateObj) {
-    let hrs24 = dateObj.getHours()+1;
+    let hrs24 = dateObj.getHours();
     let isPM = (hrs24 > 12);
-    let hrs12 = (isPM) ? (hrs24-12) : hrs24;
+    let hrs12 = (isPM) ? (hrs24-12) : (hrs24 === 0) ? 1 : hrs24;
     let mins = dateObj.getMinutes();
     let minsAdj = (mins < 10) ? `0${mins}` : `${mins}`;
     let time = (isPM) ? `${hrs12}:${minsAdj} PM` : `${hrs12}:${minsAdj} AM`;
