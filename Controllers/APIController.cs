@@ -73,7 +73,8 @@ namespace Northwind.Controllers
                 Rating = r.Rating,
                 Comment = r.Comment,
                 Name = r.Customer.Email,
-                isAuthor = (User.Identity.Name == r.Customer.Email)
+                isAuthor = (User.Identity.Name == r.Customer.Email),
+                UploadDate = r.UploadDate
             });
         }
 
@@ -94,6 +95,8 @@ namespace Northwind.Controllers
             _northwindContext.AddReview(review);
             return NoContent();
         } 
+
+
 
         public static int AvgRating(IEnumerable<Review> Reviews)
         {

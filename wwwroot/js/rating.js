@@ -114,7 +114,7 @@
                                         </span>
                                         <span>&nbsp;|&nbsp;${review.name}</span>
                                         <div class="float-right" style="position: relative; top: -5px; right: -5px;">
-                                            <small >${formatDate(new Date())}</small>
+                                            <small >${formatDate(new Date(Date.parse(review.uploadDate)))}</small>
                                             ${trashButton}                                        
                                         </div>
                                         
@@ -276,6 +276,7 @@ $('#addToCart').on('click', function () {
 });
 
 function formatDate(dateObj) {
+    console.log(dateObj);
     let hrs24 = dateObj.getHours();
     let isPM = (hrs24 > 12);
     let hrs12 = (isPM) ? (hrs24 - 12) : (hrs24 === 0) ? 1 : hrs24;
@@ -316,7 +317,6 @@ $('#filter').on('change', function() {
 function getProducts() {
     let categoryId = $('#category-filter').val();
     let discontinued = $('#discontinued').is(':checked');
-    console.log(categoryId, discontinued);
     $.getJSON({
         url: `../../api/category/${categoryId}/product/discontinued/${discontinued}`,
         success: function (res, status, jqXhr) {

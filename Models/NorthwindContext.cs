@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System;
 
 namespace Northwind.Models
 {
@@ -48,6 +49,7 @@ namespace Northwind.Models
                 Comment = reviewJSON.Comment,
                 CustomerId = CustomerId,
                 ProductId = ProductId,
+                UploadDate = DateTime.Now
             };
             Reviews.Add(review);
             this.SaveChanges();
