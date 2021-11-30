@@ -65,7 +65,7 @@
         mouse.x = e.clientX;
         mouse.y = e.clientY;
     });
-
+ 
     function getReviews() {
         let review_container = $('#reviews');
         review_container.html("");
@@ -75,6 +75,13 @@
             success: function (res, status, jqXhr) {
                 let output = "Error processing reviews...";
                 if (res.length == 0) {
+                    //! REDUNDANT
+                    getAverageRating(productId, function (avg) {
+                        let accordianHeader = $('#reviews-avg');
+                        accordianHeader.data('rating', avg);
+                        setStars(accordianHeader, avg);
+                    });
+                    $('#review-count').html(`(${res.length})`);
                     output = `
                         <div class="card">
                             <div class="card-body">
@@ -99,7 +106,7 @@
                     // Start parsing data
                     for (let i = 0; i < res.length; i++) {
                         let review = res[i];
-                        let trashButton = (review.isAuthor) ? `<button class="btn trash-btn"><i class="fas fa-trash-alt"></i></button>` : '';
+                        let trashButton = (review.isAuthor) ? `<button data-id="${review.ratingId}" class="btn trash-btn"><i class="fas fa-trash-alt"></i></button>` : '';
                         output = `
                             <div class="card mb-3">
                                 <div class="card-body">
@@ -113,7 +120,7 @@
                                             <i class="far fa-star rate-popover" data-value="10"></i>
                                         </span>
                                         <span>&nbsp;|&nbsp;${review.name}</span>
-                                        <div class="float-right" style="position: relative; top: -5px; right: -5px;">
+                                        <div id="review-details" class="float-right" style="position: relative; top: -5px; right: -5px;">
                                             <small >${formatDate(new Date(Date.parse(review.uploadDate)))}</small>
                                             ${trashButton}                                        
                                         </div>
@@ -164,6 +171,27 @@
         });
     });
 
+    $('#reviews').on("click", "button", function() {
+        // API Call to delete review
+        let id = $(this).data('id');
+        $.ajax({
+            headers: { "Content-Type": "application/json" },
+            url: `../../api/deleteReview/${id}`,
+            type: 'delete',
+            success: function (response, textStatus, jqXhr) {
+                // success
+                toast("Review Deleted", "Your review has been deleted!");
+                getReviews();
+                resetAddReviewModal();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                // log the error to the console
+                toast("Delete Review Error", "There was a problem deleted your review! Please try again later. | Status: " + textStatus, 'red');
+                console.error(errorThrown);
+            }
+        });
+    })
+
 });
 
 // Global Functions
@@ -189,28 +217,37 @@ function resetCartModal() {
 }
 
 function setStars(el, rating) {
-    if (rating === 0) return;
-    let adj = rating / 2;
-    el.children('i').each(function (index) {
-        let i = $(this);
-        if (adj > index && (adj - index) > .5) {
-            // Full Star
-            i.css('color', 'gold');
-            i.removeClass();
-            i.addClass('fas fa-star');
-        } else if ((adj - index) === .5) {
-            // Half Star
-            i.css('color', 'gold');
-            i.removeClass();
-            i.addClass('fas fa-star-half-alt');
-        } else {
-            // Empty Star
+    if (rating === 0) {
+        el.children('i').each(function(index) {
+            let i = $(this);
             i.css('color', 'black');
             i.removeClass();
             i.addClass('far fa-star');
-        }
-        i.addClass('rate-popover');
-    });
+            i.addClass('rate-popover');
+        });
+    } else {
+        let adj = rating / 2;
+        el.children('i').each(function (index) {
+            let i = $(this);
+            if (adj > index && (adj - index) > .5) {
+                // Full Star
+                i.css('color', 'gold');
+                i.removeClass();
+                i.addClass('fas fa-star');
+            } else if ((adj - index) === .5) {
+                // Half Star
+                i.css('color', 'gold');
+                i.removeClass();
+                i.addClass('fas fa-star-half-alt');
+            } else {
+                // Empty Star
+                i.css('color', 'black');
+                i.removeClass();
+                i.addClass('far fa-star');
+            }
+            i.addClass('rate-popover');
+        });
+    }
 }
 
 $('#addReviewButton').on('click', function () {
@@ -276,7 +313,6 @@ $('#addToCart').on('click', function () {
 });
 
 function formatDate(dateObj) {
-    console.log(dateObj);
     let hrs24 = dateObj.getHours();
     let isPM = (hrs24 > 12);
     let hrs12 = (isPM) ? (hrs24 - 12) : (hrs24 === 0) ? 1 : hrs24;

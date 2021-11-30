@@ -55,6 +55,12 @@ namespace Northwind.Models
             this.SaveChanges();
         }
 
+        public void DeleteReview(Review r) 
+        {
+            Reviews.Remove(r);
+            this.SaveChanges();
+        }
+
         //add items selected to the CartItems table
         public CartItem AddToCart(CartItemJSON cartItemJSON)
         {
