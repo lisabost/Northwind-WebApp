@@ -1,5 +1,21 @@
+@using Northwind.Models
+@model IEnumerable<Category>
+
 <div class="Container">
     <h2>Products</h2>
+    <div id="filter">
+        <label for="discontinued">Discontinued</label>
+        <input id="discontinued" type="checkbox" aria-label="Checkbox for following text input">
+        <br>
+        <label for="category-filter">Filter</label>
+        <select id="category-filter">
+            <option value="0" selected>All</option>
+            @foreach (Category c in Model)
+            {
+                <option value="@c.CategoryId">@c.CategoryName</option>
+            }
+        </select>
+    </div>
     <hr>
     <div id="loading" class="d-flex justify-content-center">
         <div class="spinner-border" role="status">

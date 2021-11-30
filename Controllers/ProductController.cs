@@ -38,7 +38,7 @@ namespace Northwind.Controllers
         [HttpGet]
         public IActionResult Products()
         {
-            return View();
+            return View(_northwindContext.Categories);
         }
 
         public Boolean HasPurchased(int productId, string email)
