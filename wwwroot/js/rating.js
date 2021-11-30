@@ -216,7 +216,7 @@ $('#addReviewButton').on('click', function () {
     if ($('#hasPurchased').data('haspurchased').toUpperCase() === 'TRUE') {
         $('#add-review-modal').modal();
     } else {
-        toast("Review Error", "Purchase Item to leave review!", 'red');
+        toast("Review Error", "Purchase this Item to leave review!", 'red');
     }
 });
 
