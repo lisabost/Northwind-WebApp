@@ -280,7 +280,7 @@ function formatDate(dateObj) {
     let hrs12 = (isPM) ? (hrs24-12) : (hrs24 === 0) ? 1 : hrs24;
     let mins = dateObj.getMinutes();
     let minsAdj = (mins < 10) ? `0${mins}` : `${mins}`;
-    let time = (isPM) ? `${hrs12}:${minsAdj} PM` : `${hrs12}:${minsAdj} AM`;
+    let time = `${hrs12}:${minsAdj}` + ((isPM) ? ` PM` : ` AM`);
     return `${dateObj.getMonth()+1}/${dateObj.getDate()}/${dateObj.getFullYear()} - ${time}`;
 }
 
