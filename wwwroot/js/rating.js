@@ -88,8 +88,17 @@
                     `;
                     review_container.html(output);
                 } else {
+                    // Set Averages and Amounts in Accordian header
+                    getAverageRating(productId, function(avg) {
+                        let accordianHeader = $('#reviews-avg');
+                        accordianHeader.data('rating', avg);
+                        setStars(accordianHeader, avg);
+                    });
+                    $('#review-count').html(`(${res.length})`);
+                    // Start parsing data
                     for (let i = 0; i < res.length; i++) {
                         let review = res[i];
+                        let trashButton = (review.isAuthor) ? `<button class="btn trash-btn"><i class="fas fa-trash-alt"></i></button>` : '';
                         output = `
                             <div class="card mb-3">
                                 <div class="card-body">
@@ -103,7 +112,11 @@
                                             <i class="far fa-star rate-popover" data-value="10"></i>
                                         </span>
                                         <span>&nbsp;|&nbsp;${review.name}</span>
-                                        <small class="float-right">${formattedDateNow(new Date())}</small>
+                                        <div class="float-right" style="position: relative; top: -5px; right: -5px;">
+                                            <small >${formatDate(new Date())}</small>
+                                            ${trashButton}                                        
+                                        </div>
+                                        
                                     </div>
                                     <p class="card-text">
                                         ${review.comment}
@@ -140,6 +153,11 @@
                 // success
                 toast("Review Added", "Thank you for your review of " + document.getElementById('product-id').innerText + "!");
                 getReviews();
+                // let newAvgRating = 
+                // $('#reviews-avg').data('rating', getAverageRating($(`#addReviewButton`).data('id')));
+                // setStars($('#review-avg'), )
+                // let review_amt = $('#review-count').data('amt');
+                // $('#review-count').data('amt', review_amt + 1);
                 resetAddReviewModal();
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -261,7 +279,7 @@ $('#addToCart').on('click', function () {
     });
 });
 
-function formattedDateNow(dateObj) {
+function formatDate(dateObj) {
     let hrs24 = dateObj.getHours();
     let isPM = (hrs24 > 12);
     let hrs12 = (isPM) ? (hrs24-12) : (hrs24 === 0) ? 1 : hrs24;
@@ -269,4 +287,17 @@ function formattedDateNow(dateObj) {
     let minsAdj = (mins < 10) ? `0${mins}` : `${mins}`;
     let time = (isPM) ? `${hrs12}:${minsAdj} PM` : `${hrs12}:${minsAdj} AM`;
     return `${dateObj.getMonth()+1}/${dateObj.getDate()}/${dateObj.getFullYear()} - ${time}`;
+}
+
+function getAverageRating(ProductId, callback) {
+    $.getJSON({
+        url: `../../api/product/${ProductId}/AvgRating`,
+        success: function (res, status, jqXhr) {
+            callback(res);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            // log the error to the console
+            console.log(errorThrown);
+        }
+    });
 }

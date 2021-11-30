@@ -49,8 +49,16 @@ namespace Northwind.Controllers
                 RatingId = r.ReviewId,
                 Rating = r.Rating,
                 Comment = r.Comment,
-                Name = r.Customer.Email
+                Name = r.Customer.Email,
+                isAuthor = (User.Identity.Name == r.Customer.Email)
             });
+        }
+
+        [HttpGet, Route("api/product/{ProductId}/AvgRating")]
+        public Object GetAverageRating(int ProductId)
+        {
+            IEnumerable<Review> rs = _northwindContext.Reviews.Where(r => r.ProductId == ProductId);
+            return AvgRating(rs);
         }
 
         [HttpPost, Route("api/addtocart")]

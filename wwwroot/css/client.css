@@ -192,3 +192,12 @@ cursor: pointer;
   -webkit-user-select: none;
   -o-user-select: none;
 }
+
+/* Trash Review Icon */
+.trash-btn {
+  margin: 0 2px;
+  padding: 0 5px 5px 5px; 
+  font-size: 20px; 
+  color: #ffadbc; 
+  border-radius: 50px
+}

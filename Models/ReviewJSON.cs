@@ -14,5 +14,6 @@ namespace Northwind.Models
         public string Name { get; set; }
 
         public int ProductId { get; set; }
+        public bool isAuthor { get; set; }
     }
 }
