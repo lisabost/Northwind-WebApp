@@ -153,11 +153,6 @@
                 // success
                 toast("Review Added", "Thank you for your review of " + document.getElementById('product-id').innerText + "!");
                 getReviews();
-                // let newAvgRating = 
-                // $('#reviews-avg').data('rating', getAverageRating($(`#addReviewButton`).data('id')));
-                // setStars($('#review-avg'), )
-                // let review_amt = $('#review-count').data('amt');
-                // $('#review-count').data('amt', review_amt + 1);
                 resetAddReviewModal();
             },
             error: function (jqXHR, textStatus, errorThrown) {
