@@ -98,10 +98,6 @@ body {
   opacity: .5;
 }
 
-#product_rows tr {
-cursor: pointer;
-}
-
 /* Animated Accordian Chevron */
 
 .animated-icon {

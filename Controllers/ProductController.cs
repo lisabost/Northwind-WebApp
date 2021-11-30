@@ -46,33 +46,5 @@ namespace Northwind.Controllers
             return _northwindContext.OrderDetails.Where(od => od.ProductId == productId).Any(o => o.Order.Customer.Email == email);
         }
 
-        // [HttpPost, ValidateAntiForgeryToken, Authorize]
-        // public IActionResult AddReview(int id, Review review)
-        // {
-        //     string email = User.Identity.Name;
-        //     review.ProductId = id;
-        //     // Error on un-purchased item!
-        //     if (HasPurchased(id, email))
-        //     {
-        //         if (ModelState.IsValid)
-        //         {
-        //             if (review.Comment.Length <= 0)
-        //             {
-        //                 ModelState.AddModelError("", "Comment is required!");
-        //             }
-        //             else
-        //             {
-        //                 review.CustomerId = _northwindContext.Customers.Where(c => c.Email == email).FirstOrDefault().CustomerId;
-        //                 _northwindContext.AddReview(review);
-        //                 return RedirectToAction("Products", "Product", review.ProductId);
-        //             }
-        //         } else {
-        //             ModelState.AddModelError("", "Model State invalid!");                 
-        //         }
-        //     } else {
-        //         ModelState.AddModelError("", "You have not purched this product!");
-        //     }
-        //     return RedirectToAction("Index", "Home");
-        // }
     }
 }
