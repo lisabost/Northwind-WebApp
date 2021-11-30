@@ -1,4 +1,79 @@
 ﻿$(document).ready(() => {
+    $(() => {
+        const formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD'
+        });
+        getProducts();
+        function getProducts() {
+            $.getJSON({
+                url: `../../api/product/`,
+                success: function (res, status, jqXhr) {
+                    let output = "Error grabbing products...";
+                    let products_container = $('#products');
+
+                    if (res.length == 0) {
+                        output = `
+                            <div class="col py-2">
+                                <div class="card mx-auto" style="width: 18rem;">
+                                    <div class="card-body">
+                                        There was a problem loading the products...
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        products_container.html(output);
+                    } else {
+                        for (let i = 0; i < res.length; i++) {
+                            let product = res[i];
+                            output = `
+                                <div class="col py-2">
+                                    <div class="card mx-auto" style="width: 18rem; height: 155px;">
+                                        <div class="card-body">
+                                            <button style="z-index: 2; position: relative" id="add-to-cart" class="add-to-cart-button btn btn-primary float-right" data-productid="${product.productId}" data-productname="${product.productName}" data-unitprice="${product.unitPrice}"><i class="fas fa-cart-plus"></i></button>
+                                            
+                                            <p style="max-width: 175px; border-bottom: rgba(0, 0, 0, 0.2) solid 2px;" class="d-block pb-1 h5">${product.productName}</p>
+                                            <div style="position: absolute; left: 22px; bottom: 19px;">
+                                                <h6 class="">${formatter.format(product.unitPrice)}</h6>
+                                                <span style="" class="review-stars" id="review-${product.productId}" data-rating="${product.averageRating}" data-interactive="false">
+                                                    <i class="far fa-star rate-popover" data-value="2"></i>
+                                                    <i class="far fa-star rate-popover" data-value="4"></i>
+                                                    <i class="far fa-star rate-popover" data-value="6"></i>
+                                                    <i class="far fa-star rate-popover" data-value="8"></i>
+                                                    <i class="far fa-star rate-popover" data-value="10"></i>
+                                                </span>
+                                                <span>
+                                                    (${product.ratingCount})
+                                                </span>
+                                            </div>
+                                            <a href="/Product/ProductDetail/${product.productId}" class="stretched-link"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                            products_container.append(output);
+
+                            setStars($(`#review-${product.productId}`), product.averageRating);
+
+                        }
+                        hideSpinner();
+                    }
+                },
+                error: function (jqXHR, status, err) {
+                    toast("Products Error", "There was a problem loading product information. Please try again later. | Status: " + status, 'red');
+                    console.error(error);
+                    hideSpinner();
+                }
+            });
+        }
+    });
+
+    function hideSpinner() {
+        let spinner = $('#loading');
+        spinner.removeClass('d-flex');
+        spinner.addClass('d-none');
+    }
+    
     init();
     let mouse = { x: 0, y: 0 }
 
@@ -89,7 +164,7 @@
                     review_container.html(output);
                 } else {
                     // Set Averages and Amounts in Accordian header
-                    getAverageRating(productId, function(avg) {
+                    getAverageRating(productId, function (avg) {
                         let accordianHeader = $('#reviews-avg');
                         accordianHeader.data('rating', avg);
                         setStars(accordianHeader, avg);
@@ -162,7 +237,7 @@
             }
         });
     });
-    
+
 });
 
 // Global Functions
@@ -277,11 +352,11 @@ $('#addToCart').on('click', function () {
 function formatDate(dateObj) {
     let hrs24 = dateObj.getHours();
     let isPM = (hrs24 > 12);
-    let hrs12 = (isPM) ? (hrs24-12) : (hrs24 === 0) ? 1 : hrs24;
+    let hrs12 = (isPM) ? (hrs24 - 12) : (hrs24 === 0) ? 1 : hrs24;
     let mins = dateObj.getMinutes();
     let minsAdj = (mins < 10) ? `0${mins}` : `${mins}`;
     let time = `${hrs12}:${minsAdj}` + ((isPM) ? ` PM` : ` AM`);
-    return `${dateObj.getMonth()+1}/${dateObj.getDate()}/${dateObj.getFullYear()} - ${time}`;
+    return `${dateObj.getMonth() + 1}/${dateObj.getDate()}/${dateObj.getFullYear()} - ${time}`;
 }
 
 function getAverageRating(ProductId, callback) {
