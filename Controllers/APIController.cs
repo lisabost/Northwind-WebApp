@@ -13,27 +13,10 @@ namespace Northwind.Controllers
         private NorthwindContext _northwindContext;
         public APIController(NorthwindContext db) => _northwindContext = db;
 
-        // [HttpGet, Route("api/product/discontinued/{discontinued}")]
-        // // returns all products
-        // public IEnumerable<ProductsJSON> Get(bool discontinued) {
-            
-        //     return _northwindContext.Products.Where(p => p.Discontinued == discontinued).Select(p => new ProductsJSON{
-        //         ProductId = p.ProductId,
-        //         AverageRating = AvgRating(p.Reviews),
-        //         RatingCount = p.Reviews.Count,
-        //         ProductName = p.ProductName,
-        //         UnitPrice = p.UnitPrice,
-        //         Discontinued = p.Discontinued
-        //     });
-        // } 
-
         [HttpGet, Route("api/product/{id}")]
         // returns specific product by specifying the id of the product
         public Product Get(int id) => _northwindContext.Products.FirstOrDefault(p => p.ProductId == id);
 
-        // [HttpGet, Route("api/product/discontinued/{discontinued}")]
-        // // returns all products where discontinued = true/false
-        // public IEnumerable<Product> GetDiscontinued(bool discontinued) => _northwindContext.Products.Where(p => p.Discontinued == discontinued).OrderBy(p => p.ProductName);
 
         [HttpGet, Route("api/category/{CategoryId}/product")]
         // returns all products in a specific category
@@ -41,7 +24,7 @@ namespace Northwind.Controllers
 
 
         [HttpGet, Route("api/category/{CategoryId}/product/discontinued/{discontinued}")]
-        // returns all products in a specific category where discontinued = true/false
+        // returns all products in a specific category where discontinued = true/false -- works on categories page and reviews
         public IEnumerable<ProductsJSON> GetByCategoryDiscontinued(int CategoryId, bool discontinued) {
             if(CategoryId == 0) {
                 return _northwindContext.Products.Where(p => p.Discontinued == discontinued).Select(p => new ProductsJSON{
@@ -50,7 +33,8 @@ namespace Northwind.Controllers
                     RatingCount = p.Reviews.Count,
                     ProductName = p.ProductName,
                     UnitPrice = p.UnitPrice,
-                    Discontinued = p.Discontinued
+                    Discontinued = p.Discontinued,
+                    UnitsInStock = p.UnitsInStock
                 });
             }
             return _northwindContext.Products.Where(p => p.CategoryId == CategoryId && p.Discontinued == discontinued).Select(p => new ProductsJSON{
@@ -59,7 +43,8 @@ namespace Northwind.Controllers
                     RatingCount = p.Reviews.Count,
                     ProductName = p.ProductName,
                     UnitPrice = p.UnitPrice,
-                    Discontinued = p.Discontinued
+                    Discontinued = p.Discontinued,
+                    UnitsInStock = p.UnitsInStock
                 });
         } 
 
@@ -79,6 +64,7 @@ namespace Northwind.Controllers
         }
 
         [HttpGet, Route("api/product/{ProductId}/AvgRating")]
+        // gets average rating
         public Object GetAverageRating(int ProductId)
         {
             IEnumerable<Review> rs = _northwindContext.Reviews.Where(r => r.ProductId == ProductId);
@@ -98,6 +84,7 @@ namespace Northwind.Controllers
         } 
 
         [HttpDelete, Route("api/deleteReview/{id}")]
+        // allows the deletion of reviews
         public IActionResult DeleteReview(int id) 
         {
             Review r = _northwindContext.Reviews.FirstOrDefault(r => r.ReviewId == id);
@@ -106,6 +93,7 @@ namespace Northwind.Controllers
             return NoContent();
         }
 
+        // calculates the average rating of a product item
         public static int AvgRating(IEnumerable<Review> Reviews)
         {
             int total = 0;

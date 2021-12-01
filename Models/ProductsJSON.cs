@@ -16,5 +16,6 @@ namespace Northwind.Models
         public decimal UnitPrice { get; set; }
         
         public bool Discontinued { get; set; }
+        public short UnitsInStock { get; set; }
     }
 }
