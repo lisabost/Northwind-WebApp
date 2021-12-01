@@ -2,20 +2,57 @@
 @model IEnumerable<Category>
 
 <div class="Container">
-    <h2>Products</h2>
-    <div id="filter">
-        <label for="discontinued">Discontinued</label>
-        <input id="discontinued" type="checkbox" aria-label="Checkbox for following text input">
-        <br>
-        <label for="category-filter">Filter</label>
-        <select id="category-filter">
-            <option value="0" selected>All</option>
-            @foreach (Category c in Model)
-            {
-                <option value="@c.CategoryId">@c.CategoryName</option>
-            }
-        </select>
+    <div id="products-header">
+        <h2>Products</h2>
+        
+        <div class="collapse my-4" id="filters-content">
+            <div class="card card-body">
+                <div id="filter">
+                    <div class="container">
+                        <div class="row" style="font-size: 20px;">
+                            <div class="col-sm-auto my-auto">
+                            
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Show Discontinued</span>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <input type="checkbox" id="discontinued" aria-label="Determines whether discontinued products are displayed.">
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                            </div>
+                            <div class="col-sm-auto my-auto">
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="category-filter">Category</label>
+                                    </div>
+                                    <select id="category-filter">
+                                        <option value="0" selected>All</option>
+                                        @foreach (Category c in Model)
+                                        {
+                                            <option value="@c.CategoryId">@c.CategoryName</option>
+                                        }
+                                    </select>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a id="filter-content-toggle" data-istoggled="false" style="text-align: center;" data-toggle="collapse" href="#filters-content" role="button"
+            aria-expanded="false" aria-controls="filters-content">
+            Show Filters&nbsp;<i class="fas fa-filter"></i>
+        </a>
     </div>
+
     <hr>
     <div id="loading" class="d-flex justify-content-center">
         <div class="spinner-border" role="status">
