@@ -27,6 +27,6 @@ $('#filter-content-toggle').on("click", function() {
         $(this).data('istoggled', true);
         output = "Hide Filters";
     }
-    $(this).html(output);
+    $(this).html(output + '&nbsp;<i class="fas fa-filter"></i>');
 });
 
