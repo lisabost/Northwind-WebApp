@@ -1,16 +1,7 @@
 $(function(){
-    // preload audio
-    // var toastsound = new Audio('../media/toast.wav');
-
     $('.code').on('click', function(e) {
         e.stopImmediatePropagation();
         e.preventDefault();
-        // first pause the audio (in case it is still playing)
-        // toastsound.pause();
-        // // reset the audio
-        // toastsound.currentTime = 0;
-        // // play audio
-        // toastsound.play();
 
         //get data-product and data-discount elements
         var name = $(this).data("product");
@@ -21,10 +12,21 @@ $(function(){
     });
 });
 
-
-
 $(document).on('keydown', function(e) {
     if (e.keyCode == 27) {
         // Clear Toasts on Esc.
     }
-})
+});
+
+$('#filter-content-toggle').on("click", function() {
+    let output;
+    if($(this).data('istoggled')) {
+        $(this).data('istoggled', false);
+        output = "Show Filters";
+    } else {
+        $(this).data('istoggled', true);
+        output = "Hide Filters";
+    }
+    $(this).html(output);
+});
+
