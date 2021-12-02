@@ -34,7 +34,8 @@ namespace Northwind.Controllers
                     ProductName = p.ProductName,
                     UnitPrice = p.UnitPrice,
                     Discontinued = p.Discontinued,
-                    UnitsInStock = p.UnitsInStock
+                    UnitsInStock = p.UnitsInStock,
+                    hasPurchased = _northwindContext.OrderDetails.Where(od => od.ProductId == p.ProductId).Any(o => o.Order.Customer.Email == User.Identity.Name)
                 });
             }
             return _northwindContext.Products.Where(p => p.CategoryId == CategoryId && p.Discontinued == discontinued).Select(p => new ProductsJSON{
@@ -44,7 +45,8 @@ namespace Northwind.Controllers
                     ProductName = p.ProductName,
                     UnitPrice = p.UnitPrice,
                     Discontinued = p.Discontinued,
-                    UnitsInStock = p.UnitsInStock
+                    UnitsInStock = p.UnitsInStock,
+                    hasPurchased = _northwindContext.OrderDetails.Where(od => od.ProductId == p.ProductId).Any(o => o.Order.Customer.Email == User.Identity.Name)
                 });
         } 
 

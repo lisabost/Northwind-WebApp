@@ -41,6 +41,20 @@
 
                                 
                             </div>
+                            @if (User?.Identity?.IsAuthenticated ?? true) {
+                            <div class="col-sm-auto my-auto">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Purchased</span>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <input type="checkbox" id="purchased" aria-label="Only displays purchased Items.">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            }
                         </div>
                     </div>
                 </div>

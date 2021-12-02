@@ -17,5 +17,7 @@ namespace Northwind.Models
         
         public bool Discontinued { get; set; }
         public short UnitsInStock { get; set; }
+
+        public bool hasPurchased { get; set; }
     }
 }

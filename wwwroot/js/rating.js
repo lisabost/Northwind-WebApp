@@ -353,6 +353,7 @@ $('#filter').on('change', function() {
 function getProducts() {
     let categoryId = $('#category-filter').val();
     let discontinued = $('#discontinued').is(':checked');
+    let isPurchased = $('#purchased').is(':checked');
     $.getJSON({
         url: `../../api/category/${categoryId}/product/discontinued/${discontinued}`,
         success: function (res, status, jqXhr) {
@@ -374,6 +375,7 @@ function getProducts() {
             } else {
                 for (let i = 0; i < res.length; i++) {
                     let product = res[i];
+                    if(isPurchased && !product.hasPurchased) continue;
                     output = `
                         <div class="col py-2">
                             <div class="card mx-auto product-card" style="width: 18rem; height: 155px;">
