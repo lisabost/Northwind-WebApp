@@ -369,6 +369,7 @@ function getProducts() {
             } else {
                 for (let i = 0; i < res.length; i++) {
                     let product = res[i];
+                    console.log(product);
                     if(isPurchased && !product.hasPurchased) continue;
                     output = `
                         <div class="col py-2">
@@ -376,7 +377,7 @@ function getProducts() {
                                 <div class="card-body">
                                     <button style="z-index: 2; position: relative" id="add-to-cart" class="add-to-cart-button btn btn-primary float-right" data-productid="${product.productId}" data-productname="${product.productName}" data-unitprice="${product.unitPrice}"><i class="fas fa-cart-plus"></i></button>
                                     
-                                    <p style="max-width: 175px; border-bottom: rgba(0, 0, 0, 0.2) solid 2px;" class="d-block pb-1 h5">${product.productName}</p>
+                                    <p style="max-width: 175px; border-bottom: rgba(0, 0, 0, 0.2) solid 2px;" class="d-block pb-1 h5 ${(product.discontinued) ? 'disc' : ''}">${product.productName}</p>
                                     <div style="position: absolute; left: 22px; bottom: 19px;">
                                         <h6 class="">${formatter.format(product.unitPrice)}</h6>
                                         <span style="" class="review-stars" id="review-${product.productId}" data-rating="${product.averageRating}" data-interactive="false">

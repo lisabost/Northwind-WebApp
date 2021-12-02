@@ -220,3 +220,8 @@ body {
   -webkit-box-shadow: 0px 0px 50px 0px rgba(0,0,0,0.2); 
   box-shadow: 0px 0px 50px 0px rgba(0,0,0,0.2);    
 }
+
+/* Discontinued Title */
+.disc {
+  color: grey;
+}
