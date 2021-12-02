@@ -75,12 +75,6 @@
             success: function (res, status, jqXhr) {
                 let output = "Error processing reviews...";
                 if (res.length == 0) {
-                    //! REDUNDANT
-                    getAverageRating(productId, function (avg) {
-                        let accordianHeader = $('#reviews-avg');
-                        accordianHeader.data('rating', avg);
-                        setStars(accordianHeader, avg);
-                    });
                     $('#review-count').html(`(${res.length})`);
                     output = `
                         <div class="card">
@@ -95,14 +89,7 @@
                         </div>
                     `;
                     review_container.html(output);
-                } else {
-                    // Set Averages and Amounts in Accordian header
-                    getAverageRating(productId, function (avg) {
-                        let accordianHeader = $('#reviews-avg');
-                        accordianHeader.data('rating', avg);
-                        setStars(accordianHeader, avg);
-                    });
-                    $('#review-count').html(`(${res.length})`);
+                } else {    
                     // Start parsing data
                     for (let i = 0; i < res.length; i++) {
                         let review = res[i];
@@ -136,6 +123,13 @@
                         setStars($(`#review-${review.ratingId}`), review.rating);
                     }
                 }
+                // Set Averages and Amounts in Accordian header
+                getAverageRating(productId, function (avg) {
+                    let accordianHeader = $('#reviews-avg');
+                    accordianHeader.data('rating', avg);
+                    setStars(accordianHeader, avg);
+                });
+                $('#review-count').html(`(${res.length})`);
             },
             error: function (jqXHR, status, err) {
                 toast("Reviews Error", "There was a problem while loading this products reviews! | Status: " + status, 'red');
