@@ -225,3 +225,18 @@ body {
 .disc {
   color: grey;
 }
+
+/* Pagination */
+.tab-pane.active {
+  animation: tab-pane 0.5s ease;
+}
+
+@keyframes tab-pane {
+  0% { opacity: 0 }
+  100% { opacity: 1 }
+}
+
+#pagination {
+  display: table;
+  margin: 0 auto;
+}
