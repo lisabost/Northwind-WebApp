@@ -38,8 +38,8 @@ function getProducts() {
 
                     if(isPurchased && !product.hasPurchased) continue;
 
-                    if((i % 12) === 0 && i > 1) {
-                        currentPage = (i / 12) + 1;
+                    if((i % ITEMS_PER_PAGE) === 0 && i > 1) {
+                        currentPage = (i / ITEMS_PER_PAGE) + 1;
                         newPageButton(currentPage);
                         newPageContent(currentPage);
                     }
