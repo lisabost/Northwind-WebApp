@@ -1,3 +1,5 @@
+let pageCardCount = 0;
+
 const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD'
@@ -26,6 +28,7 @@ function getProducts() {
             let output = "Error grabbing products...";
             let products_container = $('#products');
             let currentPage = 1;
+            pageCardCount = 0;
             products_container.html("");
 
             initPagegination();
@@ -38,8 +41,9 @@ function getProducts() {
 
                     if(isPurchased && !product.hasPurchased) continue;
 
-                    if((i % ITEMS_PER_PAGE) === 0 && i > 1) {
-                        currentPage = (i / ITEMS_PER_PAGE) + 1;
+                    if((pageCardCount % ITEMS_PER_PAGE) === 0 && pageCardCount > 1) {
+                        currentPage = (pageCardCount / ITEMS_PER_PAGE) + 1;
+                        console.log(currentPage);
                         newPageButton(currentPage);
                         newPageContent(currentPage);
                     }
@@ -71,11 +75,8 @@ function getProducts() {
                     `;
                     //Append to proper page
                     appendToPage(currentPage, output);
-
-                    // products_container.append(output);
-
                     setStars($(`#review-${product.productId}`), product.averageRating);
-
+                    pageCardCount++;
                 }
                 hideSpinner();
                 checkIfEmpty();
