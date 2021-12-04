@@ -324,7 +324,7 @@ function getAverageRating(ProductId, callback) {
         },
         error: function (jqXHR, textStatus, errorThrown) {
             // log the error to the console
-            console.log(errorThrown);
+            console.error(errorThrown);
         }
     });
 }

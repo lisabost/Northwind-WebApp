@@ -1,5 +1,3 @@
-let pageCardCount = 0;
-
 const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD'
@@ -17,6 +15,8 @@ $('#filter').on('change', function() {
 
 function getProducts() {
     const ITEMS_PER_PAGE = 12;
+
+    let pageCardCount = 0;
 
     let categoryId = $('#category-filter').val();
     let discontinued = $('#discontinued').is(':checked');
@@ -43,7 +43,6 @@ function getProducts() {
 
                     if((pageCardCount % ITEMS_PER_PAGE) === 0 && pageCardCount > 1) {
                         currentPage = (pageCardCount / ITEMS_PER_PAGE) + 1;
-                        console.log(currentPage);
                         newPageButton(currentPage);
                         newPageContent(currentPage);
                     }
