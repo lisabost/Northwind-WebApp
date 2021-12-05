@@ -221,6 +221,11 @@ body {
   box-shadow: 0px 0px 50px 0px rgba(0,0,0,0.2);    
 }
 
+.filter-item {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 /* Discontinued Title */
 .disc {
   color: grey;
@@ -239,4 +244,10 @@ body {
 #pagination {
   display: table;
   margin: 0 auto;
+}
+
+/* Product Name on ProductDetail Page */
+#product-id {
+  padding: 0;
+  margin: 0;
 }

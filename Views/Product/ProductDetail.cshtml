@@ -22,9 +22,17 @@
         <i class="fas fa-long-arrow-alt-left fa-2x"></i>
     </button>
 
-    <div class="">
-        <h1 id="product-id" class="d-inline-block" data-id="@Model.Product.ProductId">@Model.Product.ProductName</h1>
-        <h3 class="float-right">@Math.Round(Model.Product.UnitPrice, 2).ToString("C")</h3>
+    <div>
+        <div class="row">
+            <div class="col">
+                <h1 id="product-id" class="d-inline-block" data-id="@Model.Product.ProductId">@Model.Product.ProductName</h1>
+                <br>
+            <span># @Model.Product.ProductId</span>
+            </div>
+            <div class="col">
+                <h3 class="float-right">@Math.Round(Model.Product.UnitPrice, 2).ToString("C")</h3>
+            </div>
+        </div>
     </div>
 
     <hr>

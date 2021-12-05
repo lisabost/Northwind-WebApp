@@ -31,8 +31,9 @@ function getProducts() {
             pageCardCount = 0;
             products_container.html("");
 
-            initPagegination();
+            console.log(res);
 
+            initPagegination();
             if (res.length == 0) {
                 checkIfEmpty();
             } else {
@@ -152,3 +153,13 @@ function checkIfEmpty() {
         appendToPage(1, noCards);
     }
 }
+
+let page = 1;
+$('#pagination').on('click', function(e) {
+    let p = e.target.id.split('-')[1];
+    if(page != p) {
+        page = e.target.id.split('-')[1];
+        window.scrollTo(0, 0);
+    }
+    
+});
