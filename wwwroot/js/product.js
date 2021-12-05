@@ -44,8 +44,7 @@ function getProducts() {
 
                     if((pageCardCount % ITEMS_PER_PAGE) === 0 && pageCardCount > 1) {
                         currentPage = (pageCardCount / ITEMS_PER_PAGE) + 1;
-                        newPageButton(currentPage);
-                        newPageContent(currentPage);
+                        newPage(currentPage);
                     }
 
                     output = `
@@ -83,7 +82,7 @@ function getProducts() {
             }
         },
         error: function (jqXHR, status, err) {
-            toast("Products Error", "There was a problem loading product information. Please try again later. | Status: " + status, 'red');
+            toast("Products Error", "There was a problem loading product information. Please try again later. | Status: " + status, 'red', true);
             console.error(error);
             hideSpinner();
         }
@@ -110,23 +109,21 @@ function initPagegination() {
     $('#products').append(pageContents);
 }
 
-function newPageButton(pageNum) {
-    let output = `
+function newPage(pageNum) {
+    let button = `
         <li class="nav-item">
             <a class="nav-link" id="page-${pageNum}-button" data-toggle="tab" href="#page-${pageNum}">${pageNum}</a>
         </li>
     `;
-    $('#page-list').append(output);
-}
-
-function newPageContent(pageNum) {
-    let output = `
+    $('#page-list').append(button);
+    let content = `
     <div class="tab-pane fade" id="page-${pageNum}" role="tabpanel" aria-labelledby="page-${pageNum}">
         <div class="row" id="page-${pageNum}-contents"></div>
     </div>
     `;
-    $('#products-page-content').append(output);
+    $('#products-page-content').append(content);
 }
+
 
 function appendToPage(pageNum, card) {
     let pages = $('#products-page-content');
@@ -158,8 +155,7 @@ let page = 1;
 $('#pagination').on('click', function(e) {
     let p = e.target.id.split('-')[1];
     if(page != p) {
-        page = e.target.id.split('-')[1];
+        page = p;
         window.scrollTo(0, 0);
     }
-    
 });

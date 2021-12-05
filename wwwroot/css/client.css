@@ -157,7 +157,7 @@ body {
 
 .toast:hover {
   transition: 0.5s;
-  transform: translateX(-10%);
+  transform: translateX(-5%);
 }
 
 /* Progress Bar Animations */
@@ -250,4 +250,22 @@ body {
 #product-id {
   padding: 0;
   margin: 0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  position: relative;
+  top: 0;
+  right: 0;
+  width: 10px;
+  z-index: 2;
+}
+
+::-webkit-scrollbar-thumb {
+  padding: 5px;
+  background: #0366d6; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: gray; 
 }

@@ -25,12 +25,20 @@
     <div>
         <div class="row">
             <div class="col">
-                <h1 id="product-id" class="d-inline-block" data-id="@Model.Product.ProductId">@Model.Product.ProductName</h1>
+                <h1 id="product-id" class="d-inline-block" data-id="@Model.Product.ProductId">@Model.Product.ProductName
+                </h1>
                 <br>
-            <span># @Model.Product.ProductId</span>
+                <span># @Model.Product.ProductId</span>
             </div>
             <div class="col">
-                <h3 class="float-right">@Math.Round(Model.Product.UnitPrice, 2).ToString("C")</h3>
+                <ul style="list-style-type: none;" class="float-right">
+                    <li>
+                        <h3 class="float-right">@Math.Round(Model.Product.UnitPrice, 2).ToString("C")</h3>
+                    </li>
+                    <li>
+                        <h6 class="float-right">Stock: @Model.Product.UnitsInStock Units</h6>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -42,7 +50,8 @@
         @if (User?.Identity?.IsAuthenticated ?? true)
         {
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary float-right" id="addReviewButton" data-id="@Model.Product.ProductId" data-name="@User.Identity.Name">
+            <button type="button" class="btn btn-primary float-right" id="addReviewButton"
+            data-id="@Model.Product.ProductId" data-name="@User.Identity.Name">
                 Add Review
             </button>
             <!-- Modal -->
@@ -74,9 +83,8 @@
 
                                 <div class="form-group">
                                     <label for="comment">Comment</label>
-                                    <textarea class="form-control" id="comment"
-                                    rows="3"></textarea>
-                                    
+                                    <textarea class="form-control" id="comment" rows="3"></textarea>
+
                                 </div>
                                 <div class="form-group">
                                     <button class="btn btn-primary" id="addReview" type="submit">Add Review</button>
@@ -95,9 +103,11 @@
 
     <div class="accordion" id="accordionExample">
         <div class="card">
-            <div id="reviews-header-btn" class="btn card-header" id="headingOne" action="action" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <div id="reviews-header-btn" class="btn card-header" id="headingOne" action="action" type="button"
+                data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 <div class="d-inline-block float-left" style="z-index: 2;">
-                    <span class="review-stars" id="reviews-avg" data-rating="@Model.AverageRating" data-interactive="false">
+                    <span class="review-stars" id="reviews-avg" data-rating="@Model.AverageRating"
+                        data-interactive="false">
                         <i class="far fa-star rate-popover" data-value="2"></i>
                         <i class="far fa-star rate-popover" data-value="4"></i>
                         <i class="far fa-star rate-popover" data-value="6"></i>
@@ -109,15 +119,16 @@
                     </span>
                 </div>
                 <div class="float-right">
-                    @* <button class="btn back" action="action" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">   
-                    </button> *@
+                    @* <button class="btn back" action="action" type="button" data-toggle="collapse"
+                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        </button> *@
                     <i id="chevron" class="animated-icon fas fa-chevron-up"></i>
                 </div>
             </div>
-            <div id="collapseOne" class="collapse" style="background-color: rgba(207, 148, 47, 0.1)" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div id="collapseOne" class="collapse" style="background-color: rgba(207, 148, 47, 0.1)"
+                aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div id="reviews" class="card-body"></div>
             </div>
         </div>
     </div>
     <br>
-

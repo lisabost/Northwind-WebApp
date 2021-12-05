@@ -4,15 +4,6 @@ let index = 0;
 let toastIds = [];
 const Toast_Delay = 10000;
 function toast(header, message, color = '#1B6EC2', persitant=false, url=undefined) {
-    switch (color.toUpperCase()) {
-        case "RED":
-            const error = new Audio('../../media/error.wav');
-            error.play();
-            break;
-        default:
-            const toast = new Audio('../../media/default.wav');
-            toast.play();
-    }
     if (!initToast) {
         $('body').append(`<div id="toast-component" style="position: fixed;top: 10px;right: 10px; z-index: 5; width: 300px;"></div>`)
         initToast = true;
@@ -53,6 +44,15 @@ function toast(header, message, color = '#1B6EC2', persitant=false, url=undefine
             toastIds.shift();
         }, Toast_Delay);
         $(`#toast-${index}`).toast({ delay: 9000 }).toast('show');
+    }
+    switch (color.toUpperCase()) {
+        case "RED":
+            const error = new Audio('../../media/error.wav');
+            error.play();
+            break;
+        default:
+            const toast = new Audio('../../media/default.wav');
+            toast.play();
     }
     index++;
 }

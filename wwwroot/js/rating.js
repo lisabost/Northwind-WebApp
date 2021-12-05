@@ -132,7 +132,7 @@
                 $('#review-count').html(`(${res.length})`);
             },
             error: function (jqXHR, status, err) {
-                toast("Reviews Error", "There was a problem while loading this products reviews! | Status: " + status, 'red');
+                toast("Reviews Error", "There was a problem while loading this products reviews! | Status: " + status, 'red', true);
                 console.error(err);
             }
         });
@@ -159,7 +159,7 @@
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 // log the error to the console
-                toast("Add Review Error", "There was a problem creating your review! Please try again later. | Status: " + textStatus, 'red');
+                toast("Add Review Error", "There was a problem creating your review! Please try again later. | Status: " + textStatus, 'red', true);
                 console.error(errorThrown);
             }
         });
@@ -180,7 +180,7 @@
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 // log the error to the console
-                toast("Delete Review Error", "There was a problem deleted your review! Please try again later. | Status: " + textStatus, 'red');
+                toast("Delete Review Error", "There was a problem deleted your review! Please try again later. | Status: " + textStatus, 'red', true);
                 console.error(errorThrown);
             }
         });
@@ -248,7 +248,7 @@ $('#addReviewButton').on('click', function () {
     if ($('#hasPurchased').data('haspurchased').toUpperCase() === 'TRUE') {
         $('#add-review-modal').modal();
     } else {
-        toast("Review Error", "Purchase this Item to leave review!", 'red');
+        toast("Review Error", "Purchase this Item to leave review!", 'red', true);
     }
 });
 
@@ -266,7 +266,7 @@ $('#products').on('click', 'button', function () {
             $('#Quantity').change();
             $('#cartModal').modal();
         } else {
-            toast("Access Denied", "You must be signed in as a customer to access the cart.", 'red');
+            toast("Access Denied", "You must be <span style='color: blue; text-decoration: underline;'>signed in</span> as a customer to access the cart.", 'red', true, '/Account/Login');
         }
     }
 });
@@ -301,7 +301,7 @@ $('#addToCart').on('click', function () {
         },
         error: function (jqXHR, textStatus, errorThrown) {
             // log the error to the console
-            toast("Cart Error", "There was a problem adding the item to your cart. Please try again later. | Status: " + textStatus, 'red');
+            toast("Cart Error", "There was a problem adding the item to your cart. Please try again later. | Status: " + textStatus, 'red', true);
         }
     });
 });
