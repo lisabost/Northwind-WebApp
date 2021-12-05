@@ -17,7 +17,6 @@ function getProducts() {
     const ITEMS_PER_PAGE = 12;
 
     let pageCardCount = 0;
-
     let categoryId = $('#category-filter').val();
     let discontinued = $('#discontinued').is(':checked');
     let isPurchased = $('#purchased').is(':checked');
@@ -31,9 +30,8 @@ function getProducts() {
             pageCardCount = 0;
             products_container.html("");
 
-            console.log(res);
-
             initPagegination();
+
             if (res.length == 0) {
                 checkIfEmpty();
             } else {
