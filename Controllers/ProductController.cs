@@ -19,8 +19,10 @@ namespace Northwind.Controllers
         [HttpGet]
         public IActionResult ProductDetail(int id) {
             IEnumerable<Review> reviews = _northwindContext.Reviews.Where(r => r.ProductId == id);
+            Product prod = _northwindContext.Products.Where(p => p.ProductId == id).FirstOrDefault();
             return View(new ProductDetailViewModel{
                 Product = _northwindContext.Products.Where(p => p.ProductId == id).FirstOrDefault(),
+                Category = _northwindContext.Categories.Where(c => c.CategoryId == prod.CategoryId).FirstOrDefault(),
                 Reviews = reviews,
                 AverageRating = APIController.AvgRating(reviews),
                 hasPurchased = HasPurchased(id, User.Identity.Name)
