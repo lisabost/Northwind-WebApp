@@ -21,7 +21,7 @@ namespace Northwind.Controllers
             IEnumerable<Review> reviews = _northwindContext.Reviews.Where(r => r.ProductId == id);
             Product prod = _northwindContext.Products.Where(p => p.ProductId == id).FirstOrDefault();
             return View(new ProductDetailViewModel{
-                Product = _northwindContext.Products.Where(p => p.ProductId == id).FirstOrDefault(),
+                Product = prod,
                 Category = _northwindContext.Categories.Where(c => c.CategoryId == prod.CategoryId).FirstOrDefault(),
                 Reviews = reviews,
                 AverageRating = APIController.AvgRating(reviews),
