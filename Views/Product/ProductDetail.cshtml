@@ -51,7 +51,7 @@
         <h3 class="mb-0 d-inline-block">Reviews</h3>&nbsp;
         @if (User?.Identity?.IsAuthenticated ?? true)
         {
-            <!-- Button trigger modal -->
+            <!-- Review Modal -->
             <button type="button" class="btn btn-primary float-right" id="addReviewButton"
             data-id="@Model.Product.ProductId" data-name="@User.Identity.Name">
                 Add Review
@@ -121,9 +121,6 @@
                     </span>
                 </div>
                 <div class="float-right">
-                    @* <button class="btn back" action="action" type="button" data-toggle="collapse"
-                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        </button> *@
                     <i id="chevron" class="animated-icon fas fa-chevron-up"></i>
                 </div>
             </div>
