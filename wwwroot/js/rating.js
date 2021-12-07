@@ -116,28 +116,36 @@
     $('#addReview').on('click', function (e) {
         e.preventDefault();
         $('#add-review-modal').modal('hide');
-        $.ajax({
-            headers: { "Content-Type": "application/json" },
-            url: "../../api/addReview",
-            type: 'post',
-            data: JSON.stringify({
-                "ProductId": Number($('#addReviewButton').data('id')),
-                "Name": $('#addReviewButton').data('name'),
-                "Rating": Number($('#rating-input').val()),
-                "Comment": $("#comment").val()
-            }),
-            success: function (response, textStatus, jqXhr) {
-                // success
-                toast("Review Added", "Thank you for your review of " + document.getElementById('product-id').innerText + "!");
-                getReviews();
-                resetAddReviewModal();
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                // log the error to the console
-                toast("Add Review Error", "There was a problem creating your review! Please try again later. | Status: " + textStatus, 'red', true);
-                console.error(errorThrown);
-            }
-        });
+        if ($("#comment").val() != "")
+        {
+            $.ajax({
+                headers: { "Content-Type": "application/json" },
+                url: "../../api/addReview",
+                type: 'post',
+                data: JSON.stringify({
+                    "ProductId": Number($('#addReviewButton').data('id')),
+                    "Name": $('#addReviewButton').data('name'),
+                    "Rating": Number($('#rating-input').val()),
+                    "Comment": $("#comment").val()
+                }),
+                success: function (response, textStatus, jqXhr) {
+                    // success
+                    toast("Review Added", "Thank you for your review of " + document.getElementById('product-id').innerText + "!");
+                    getReviews();
+                    resetAddReviewModal();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    // log the error to the console
+                    toast("Add Review Error", "There was a problem creating your review! Please try again later. | Status: " + textStatus, 'red', true);
+                    console.error(errorThrown);
+                }
+            });
+        }
+        else
+        {
+                toast("Add Review Error", "You must leave a comment", 'red', true)
+        }
+
     });
 
     $('#reviews').on("click", "button", function() {
