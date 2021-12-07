@@ -94,6 +94,7 @@
                     for (let i = 0; i < res.length; i++) {
                         let review = res[i];
                         let trashButton = (review.isAuthor) ? `<button data-id="${review.ratingId}" class="btn trash-btn"><i class="fas fa-trash-alt"></i></button>` : '';
+                        let accountLink = ($('#addReviewButton').data('name') === review.name) ? "<a href='/Customer/Account'><i>(You)</i></a>" : "";
                         output = `
                             <div class="card mb-3">
                                 <div class="card-body">
@@ -106,7 +107,7 @@
                                             <i class="far fa-star rate-popover" data-value="8"></i>
                                             <i class="far fa-star rate-popover" data-value="10"></i>
                                         </span>
-                                        <span>&nbsp;|&nbsp;${review.name}</span>
+                                        <span>&nbsp;|&nbsp;${review.name} ${accountLink}</span>
                                         <div id="review-details" class="float-right" style="position: relative; top: -5px; right: -5px;">
                                             <small >${formatDate(new Date(Date.parse(review.uploadDate)))}</small>
                                             ${trashButton}                                        
