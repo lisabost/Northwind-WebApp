@@ -55,7 +55,7 @@ namespace Northwind.Controllers
         // returns all products
         public IEnumerable<ReviewJSON> GetReviews(int ProductId)
         {
-            return _northwindContext.Reviews.Where(r => r.ProductId == ProductId).Select(r => new ReviewJSON{
+            return _northwindContext.Reviews.Where(r => r.ProductId == ProductId).OrderBy(r => r.UploadDate).Select(r => new ReviewJSON{
                 RatingId = r.ReviewId,
                 Rating = r.Rating,
                 Comment = r.Comment,
