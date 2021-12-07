@@ -63,7 +63,8 @@
                             @User.Identity.Name
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="signInOut" asp-controller="Account" asp-action="Logout"><i class="ml-2 fas fa-sign-out-alt"></i> Sign Out</a>
+                            <a class="dropdown-item" asp-controller="Customer" asp-action="Account"><i class="fas fa-user"></i> Account</a>
+                            <a class="dropdown-item signInOut" asp-controller="Account" asp-action="Logout"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
                         </div>
                     </div>
                 }

@@ -1,5 +1,6 @@
 @using Northwind.Models
 @model Customer
+
 <h2 class="mt-3"><i class="far fa-address-card"></i> Customer Account</h2>
 
 <form method="post" asp-action="Account">
@@ -46,3 +47,27 @@
 
     <button type="submit" class="btn btn-outline-primary">Save</button>
 </form>
+
+<br>
+
+<div class="accordion" id="accordionExample">
+    <div class="card">
+        <div id="reviews-header-btn" class="btn card-header" id="headingOne" action="action" type="button"
+            data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <div class="d-inline-block float-left" style="z-index: 2;">
+                Your Reviews
+            </div>
+            <div class="float-right">
+                <i id="chevron" class="animated-icon fas fa-chevron-up"></i>
+            </div>
+        </div>
+        <div id="collapseOne" class="collapse" style="background-color: rgba(207, 148, 47, 0.1)"
+            aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div id="user-reviews" class="card-body"></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/user_reviews.js"></script>
+}

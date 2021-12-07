@@ -93,33 +93,7 @@
                     // Start parsing data
                     for (let i = 0; i < res.length; i++) {
                         let review = res[i];
-                        let trashButton = (review.isAuthor) ? `<button data-id="${review.ratingId}" class="btn trash-btn"><i class="fas fa-trash-alt"></i></button>` : '';
-                        let accountLink = ($('#addReviewButton').data('name') === review.name) ? "<a href='/Customer/Account'><i>(You)</i></a>" : "";
-                        output = `
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <div class="card-title">
-                                        <span>${(review.rating / 2).toFixed(1)}&nbsp;</span>
-                                        <span class="review-stars" id="review-${review.ratingId}" data-rating="${review.rating}" data-interactive="false">
-                                            <i class="far fa-star rate-popover" data-value="2"></i>
-                                            <i class="far fa-star rate-popover" data-value="4"></i>
-                                            <i class="far fa-star rate-popover" data-value="6"></i>
-                                            <i class="far fa-star rate-popover" data-value="8"></i>
-                                            <i class="far fa-star rate-popover" data-value="10"></i>
-                                        </span>
-                                        <span>&nbsp;|&nbsp;${review.name} ${accountLink}</span>
-                                        <div id="review-details" class="float-right" style="position: relative; top: -5px; right: -5px;">
-                                            <small >${formatDate(new Date(Date.parse(review.uploadDate)))}</small>
-                                            ${trashButton}                                        
-                                        </div>
-                                        
-                                    </div>
-                                    <p class="card-text">
-                                        ${review.comment}
-                                    </div>
-                                </div>
-                            </div>
-                        `;
+                        output = formatReviewCard(review)
                         review_container.prepend(output);
                         setStars($(`#review-${review.ratingId}`), review.rating);
                     }
@@ -190,6 +164,37 @@
 });
 
 // Global Functions
+
+function formatReviewCard(review) {
+    let trashButton = (review.isAuthor) ? `<button data-id="${review.ratingId}" class="btn trash-btn"><i class="fas fa-trash-alt"></i></button>` : '';
+    let accountLink = ($('#addReviewButton').data('name') === review.name) ? "<a href='/Customer/Account'><i>(You)</i></a>" : "";
+    let output = `
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="card-title">
+                    <span>${(review.rating / 2).toFixed(1)}&nbsp;</span>
+                    <span class="review-stars" id="review-${review.ratingId}" data-rating="${review.rating}" data-interactive="false">
+                        <i class="far fa-star rate-popover" data-value="2"></i>
+                        <i class="far fa-star rate-popover" data-value="4"></i>
+                        <i class="far fa-star rate-popover" data-value="6"></i>
+                        <i class="far fa-star rate-popover" data-value="8"></i>
+                        <i class="far fa-star rate-popover" data-value="10"></i>
+                    </span>
+                    <span>&nbsp;|&nbsp;${review.name} ${accountLink}</span>
+                    <div id="review-details" class="float-right" style="position: relative; top: -5px; right: -5px;">
+                        <small >${formatDate(new Date(Date.parse(review.uploadDate)))}</small>
+                        ${trashButton}                                        
+                    </div>
+                    
+                </div>
+                <p class="card-text">
+                    ${review.comment}
+                </div>
+            </div>
+        </div>
+    `;
+    return output;
+}
 
 $('#reviews-header-btn').click(function () {
     let chevron = $('#chevron');

@@ -95,6 +95,21 @@ namespace Northwind.Controllers
             return NoContent();
         }
 
+        [HttpGet, Route("api/account/reviews")]
+        //sends user reviews
+        public IEnumerable<ReviewJSON> GetUserReviews() 
+        {
+            Customer c = _northwindContext.Customers.Where(c => c.Email == User.Identity.Name).FirstOrDefault();
+            return _northwindContext.Reviews.Where(r => r.CustomerId == c.CustomerId).OrderBy(r => r.UploadDate).Select(r => new ReviewJSON{
+                RatingId = r.ReviewId,
+                Rating = r.Rating,
+                Comment = r.Comment,
+                Name = r.Customer.Email,
+                isAuthor = (User.Identity.Name == r.Customer.Email),
+                UploadDate = r.UploadDate
+            });
+        }
+
         // calculates the average rating of a product item
         public static int AvgRating(IEnumerable<Review> Reviews)
         {
